@@ -1,0 +1,96 @@
+﻿@model ALibrary.Models.CategoryViewModel
+@using ALibrary.Helpers
+@using PagedList.Mvc;
+
+<!-- Main content -->
+<section class="container">
+    <div class="col-sm-12">
+        @if (Model == null || Model.Books == null || Model.Books.Count == 0)
+        {
+            <h1>Ничего не найдено!</h1>
+        }
+        else
+        {
+            <h2 class="page-heading">@Model.CategoryName</h2>
+
+            foreach (var book in Model.Books)
+            {
+                <!-- Movie preview item -->
+                <div class="movie movie--preview movie--full release">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <div class="movie__images">
+                            <img alt='' src="@Url.Content($"~/Content/images/book/{book.Image}")">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                        <a href="@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)" class="movie__title link--huge">@book.Name</a>
+
+                        <p class="movie__time">@book.NumberPages с.</p>
+
+                        <p class="movie__option"><strong>Страна: </strong><a>@book.Author.Country.Name</a></p>
+                        <p class="movie__option">
+                            <strong>Категория: </strong>
+                            @for (int i = 0; i < book.Categories.Count; i++)
+                            {
+                                @Html.ActionLink(book.Categories[i].Name, "Subcategory", "Category", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories) }, null)
+                                if (i != book.Categories.Count - 1)
+                                {
+                                    Write(" | ");
+                                }
+                            }
+                        </p>
+                        <p class="movie__option"><strong>Год написания: </strong>@book.Year</p>
+                        <p class="movie__option"><strong>Автор: </strong><a>@book.Author.Name</a></p>
+
+                        <div class="movie__btns">
+                            <a href="#" class="btn btn-md btn--warning">Читать</a>
+                            <a href="#" class="watchlist">Добавить в список</a>
+                        </div>
+
+                        <div class="preview-footer">
+                            <div class="movie__rate">
+                                <div class="stars">
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (i < book.Rating)
+                                        {
+                                            <span class="book_rating"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="book_star"></span>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <!-- end movie preview item -->
+            }
+
+            <div class="coloum-wrapper">
+                <div class="pagination paginatioon--full">
+                    @*@Html.PagedListPager(Model, page => Url.Action("Index",  new { category = "Fiction", page = page }))*@
+                    @if (Model.PageType == PageType.Category)
+                    {
+                        @Html.PagedListPager(Model.Books, page => @Url.RouteUrl("CategoryPage", new { page }))
+                    }
+                    @if (Model.PageType == PageType.Subcategory)
+                    {
+                        @Html.PagedListPager(Model.Books, page => @Url.RouteUrl("SubcategoryPage", new { page }))
+                    }
+                    @if (Model.PageType == PageType.Search)
+                    {
+                        @Html.PagedListPager(Model.Books, page => @Url.RouteUrl("Search", new { search = Model.Query["search"], fieldSearch = Model.Query["fieldSearch"], page = page }))
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+
+</section>

@@ -1,0 +1,311 @@
+﻿@using ALibrary.Helpers
+@model ALibrary.Models.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Home.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+@if (Model.Slider != null && Model.Slider.Count > 0)
+{
+    <!-- Slider -->
+    <div class="bannercontainer">
+        <div class="banner">
+            <ul>
+                @foreach (var slide in Model.Slider)
+                {
+                    <li data-transition="fade" data-slotamount="7" class="slide" data-slide='@slide.Title'>
+                        <img alt='' src="@Url.Content($"~/Content/images/banners/{slide.Image}")">
+                        <div class="caption slide__name margin-slider"
+                             data-x="right"
+                             data-y="80"
+                             data-splitin="chars"
+                             data-elementdelay="0.1"
+                             data-speed="700"
+                             data-start="1400"
+                             data-easing="easeOutBack"
+                             data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
+                             data-frames="{ typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:1650;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 },
+                                                 { typ :lines;
+                                                 elementdelay :0.1;
+                                                 start:2150;
+                                                 speed:500;
+                                                 ease:Power3.easeOut;
+                                                 animation:x:0;y:0;z:0;rotationX:00;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:1;transformPerspective:600;transformOrigin:50% 50%;
+                                                 }
+                                                 "
+                             data-splitout="lines"
+                             data-endelementdelay="0.1"
+                             data-customout="x:-230;y:0;z:0;rotationX:0;rotationY:0;rotationZ:90;scaleX:0.2;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%"
+                             data-endspeed="500"
+                             data-end="8400"
+                             data-endeasing="Back.easeIn">
+                            @slide.Title
+                        </div>
+
+                        <div class="caption slide__time margin-slider sfr str"
+                             data-x="right"
+                             data-hoffset='-243'
+                             data-y="186"
+                             data-speed="300"
+                             data-start="2100"
+                             data-easing="easeOutBack"
+                             data-endspeed="300"
+                             data-end="8700"
+                             data-endeasing="Back.easeIn">
+                            @slide.Signature.Substring(0, slide.Signature.Length/2)
+                        </div>
+                        <div class="caption slide__date margin-slider lfb ltb"
+                             data-x="right"
+                             data-hoffset='-149'
+                             data-y="186"
+                             data-speed="500"
+                             data-start="2400"
+                             data-easing="Power4.easeOut"
+                             data-endspeed="400"
+                             data-end="8200"
+                             data-endeasing="Back.easeIn">
+                            @slide.Signature.Substring(slide.Signature.Length / 2)
+                        </div>
+                        <div class="caption slide__text margin-slider customin customout"
+                             data-x="right"
+                             data-y="250"
+                             data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:3;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                             data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                             data-speed="400"
+                             data-start="3000"
+                             data-endspeed="400"
+                             data-end="8000"
+                             data-endeasing="Back.easeIn">
+                            @Html.Raw(slide.Description)
+                        </div>
+                        <div class="caption margin-slider skewfromright customout "
+                             data-x="right"
+                             data-y="324"
+                             data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                             data-speed="400"
+                             data-start="3300"
+                             data-easing="Power4.easeOut"
+                             data-endspeed="300"
+                             data-end="7700"
+                             data-endeasing="Power4.easeOut">
+                            <a href="@slide.Link" target="_blank" class="slide__link">@slide.LinkText</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <!--end slider -->
+}
+<!-- Main content -->
+<section class="container">
+    <div class="movie-best">
+        <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Найкращий вибір</div>
+        <div class="col-sm-12 change--col">
+
+            @foreach (var book in Model.TodayBestChoice)
+            {
+                <div class="movie-beta__item second--item">
+                    <img alt='' src="@Url.Content($"~/Content/images/book/{book.Image}")">
+                    <span class="best-rate">@book.Rating</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">@book.Name</span></li>
+                        <li>
+                            <p class="movie__time">@book.NumberPages c.</p>
+                            <p>
+                                @for (int i = 0; i < book.Categories.Count; i++)
+                                {
+                                    Write(book.Categories[i].Name);
+                                    if (i != book.Categories.Count - 1)
+                                    {
+                                        Write(" | ");
+                                    }
+                                }
+                            </p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            @Html.ActionLink("Больше", "Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, new { @class = "slide__link" })
+                        </li>
+                    </ul>
+                </div>
+            }
+
+        </div>
+        <div class="col-sm-10 col-sm-offset-1 movie-best__check">новые книги</div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <h2 id='target' class="page-heading heading--outcontainer">Новые книги</h2>
+
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-8 col-md-9">
+
+                @{ int counter = 0; }
+                @foreach (var book in Model.NewBooks)
+                {
+                    if (counter < 2)
+                    {
+                        <!-- Movie variant with time -->
+                        <div class="movie movie--test movie--test--dark movie--test--left">
+                            <div class="movie__images">
+                                <a href="@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)" class="movie-beta__link">
+                                    <img alt='' src="@Url.Content($"~/Content/images/book/{book.Image}")">
+                                </a>
+                            </div>
+
+                            <div class="movie__info">
+                                <a href='@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)' class="movie__title">@book.Name (@book.Year)</a>
+
+                                <p class="movie__time">@book.NumberPages c.</p>
+
+                                <p class="movie__option">
+                                    @for (int i = 0; i < book.Categories.Count; i++)
+                                    {
+                                        @Html.ActionLink(book.Categories[i].Name, "Subcategory", "Category", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories) }, null)
+                                        if (i != book.Categories.Count - 1)
+                                        {
+                                            Write(" | ");
+                                        }
+                                    }
+                                </p>
+
+                                <div class="movie__rate">
+                                    <div class="stars">
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            if (i < book.Rating)
+                                            {
+                                                <span class="book_rating"></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="book_star"></span>
+                                            }
+                                        }
+                                    </div>
+                                    <span class="movie__rating">@book.Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Movie variant with time -->
+                        counter++;
+                    }
+                    else
+                    {
+                        <!-- Movie variant with time -->
+                        <div class="movie movie--test movie--test--light movie--test--right">
+                            <div class="movie__images">
+                                <a href="@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)" class="movie-beta__link">
+                                    <img alt='' src="@Url.Content($"~/Content/images/book/{book.Image}")">
+                                </a>
+                            </div>
+
+                            <div class="movie__info">
+                                <a href='@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)' class="movie__title">@book.Name (@book.Year)</a>
+
+                                <p class="movie__time">@book.NumberPages c.</p>
+
+                                <p class="movie__option">
+                                    @for (int i = 0; i < book.Categories.Count; i++)
+                                    {
+                                        @Html.ActionLink(book.Categories[i].Name, "Subcategory", "Category", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories) }, null)
+                                        if (i != book.Categories.Count - 1)
+                                        {
+                                            Write(" | ");
+                                        }
+                                    }
+                                </p>
+
+                                <div class="movie__rate">
+                                    <div class="stars">
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            if (i < book.Rating)
+                                            {
+                                                <span class="book_rating"></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="book_star"></span>
+                                            }
+                                        }
+                                    </div>
+                                    <span class="movie__rating">@book.Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Movie variant with time -->
+                        counter++;
+                        counter = counter == 4 ? 0 : counter;
+                    }
+                }
+            </div>
+
+            @{Html.RenderAction("Aside", "Main");}
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <h2 class="page-heading">Latest news</h2>
+
+        <div class="col-sm-4 similar-wrap col--remove">
+            <div class="post post--preview post--preview--wide">
+                <div class="post__image">
+                    <img alt='' src="http://placehold.it/270x330">
+                    <div class="social social--position social--hide">
+                        <span class="social__name">Share:</span>
+                        <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                        <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                        <a href='#' class="social__variant social--third fa fa-vk"></a>
+                    </div>
+                </div>
+                <p class="post__date">22 October 2013 </p>
+                <a href="single-page-left.html" class="post__title">"Thor: The Dark World" - World Premiere</a>
+                <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
+            </div>
+        </div>
+        <div class="col-sm-4 similar-wrap col--remove">
+            <div class="post post--preview post--preview--wide">
+                <div class="post__image">
+                    <img alt='' src="http://placehold.it/270x330">
+                    <div class="social social--position social--hide">
+                        <span class="social__name">Share:</span>
+                        <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                        <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                        <a href='#' class="social__variant social--third fa fa-vk"></a>
+                    </div>
+                </div>
+                <p class="post__date">22 October 2013 </p>
+                <a href="single-page-left.html" class="post__title">30th Annual Night Of Stars Presented By The Fashion Group International</a>
+                <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
+            </div>
+        </div>
+        <div class="col-sm-4 similar-wrap col--remove">
+            <div class="post post--preview post--preview--wide">
+                <div class="post__image">
+                    <img alt='' src="http://placehold.it/270x330">
+                    <div class="social social--position social--hide">
+                        <span class="social__name">Share:</span>
+                        <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                        <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                        <a href='#' class="social__variant social--third fa fa-vk"></a>
+                    </div>
+                </div>
+                <p class="post__date">22 October 2013 </p>
+                <a href="single-page-left.html" class="post__title">Hollywood Film Awards 2013</a>
+                <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,25 @@
+﻿@model List<ALibrary.Models.Country>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Страны</h2>
+@Html.ActionLink("Add new country", "AddCountry", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Name", "Name"),
+    grid.Column(header: "Edit Country", format: @<a href="@Url.Action("UpdateCountry", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete Country", format: @<a href="@Url.Action("DeleteCountry", "Admin", new { id = item.Id })">Delete</a>)
+))

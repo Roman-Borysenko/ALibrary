@@ -1,0 +1,26 @@
+﻿@model List<ALibrary.Models.Author>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Авторы</h2>
+@Html.ActionLink("Add new author", "AddAuthor", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Name", "Name"),
+    grid.Column("Country.Name", "Country"),
+    grid.Column(header: "Edit Author", format: @<a href="@Url.Action("UpdateAuthor", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete Author", format: @<a href="@Url.Action("DeleteAuthor", "Admin", new { id = item.Id })">Delete</a>)
+))

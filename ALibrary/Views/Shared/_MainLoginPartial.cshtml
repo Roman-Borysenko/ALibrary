@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Additional header buttons / Auth and direct link to booking-->
+        <div class="control-panel">
+            <div class="auth auth--home">
+                <div class="auth__show">
+                    <span class="auth__image">
+                        <img alt="" src="http://placehold.it/31x31">
+                    </span>
+                </div>
+                <a href="#" class="btn btn--sign btn--singin">
+                    @User.Identity.GetUserName()
+                </a>
+                <ul class="auth__function">
+                    <li><a href="#" class="auth__function-item">Watchlist</a></li>
+                    <li><a href="#" class="auth__function-item">Booked tickets</a></li>
+                    <li><a href="#" class="auth__function-item">Discussion</a></li>
+                    <li><a href="#" class="auth__function-item">Settings</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()" class="auth__function-item">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <!-- Additional header buttons / Auth and direct link to booking-->
+    <div class="control-panel">
+        <a href="@Url.Action("Login", "Account")" class="btn btn--sign">Войти</a>
+    </div>
+}

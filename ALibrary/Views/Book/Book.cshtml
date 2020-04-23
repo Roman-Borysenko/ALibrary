@@ -1,0 +1,170 @@
+﻿@model ALibrary.Models.BookViewModel
+@using ALibrary.Helpers
+
+<!-- Main content -->
+    <section class="container">
+        <div class="col-sm-8 col-md-9">
+            <div class="movie">
+                <h2 class="page-heading">@Model.Book.Name</h2>
+
+                <div class="movie__info">
+                    <div class="col-sm-6 col-md-4 movie-mobile">
+                        <div class="movie__images">
+                            <span class="movie__rating">@Model.Book.Rating</span>
+                            <img alt='' src="@Url.Content($"~/Content/images/book/{Model.Book.Image}")">
+                        </div>
+                        <div class="movie__rate">
+                            Your vote:
+                            <div class="stars">
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < Model.Book.Rating)
+                                    {
+                                        <span class="book_rating"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="book_star"></span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-8">
+                        <p class="movie__time">@Model.Book.NumberPages с.</p>
+
+                        <p class="movie__option"><strong>Страна: </strong><a>@Model.Book.Author.Country.Name</a></p>
+                        <p class="movie__option"><strong>Год написания: </strong><a>@Model.Book.Year</a></p>
+                        <p class="movie__option">
+                            <strong>Категория: </strong>
+                            @for (int i = 0; i < Model.Book.Categories.Count; i++)
+                            {
+                                @Html.ActionLink(Model.Book.Categories[i].Name, "Subcategory", "Category", new { category = BookHelper.GetParentCategory(Model.Book.Categories), subcategory = BookHelper.GetSubcategory(Model.Book.Categories) }, null)
+                                if (i != Model.Book.Categories.Count - 1)
+                                {
+                                    Write(" | ");
+                                }
+                            }
+                        </p>
+                        <p class="movie__option"><strong>Автор: </strong><a>@Model.Book.Author.Name</a></p>
+
+                        <a href="#" class="comment-link">Comments:  15</a>
+
+                        <div class="movie__btns">
+                            <a href="#" class="btn btn-md btn--warning">Читать</a>
+                            <a href="#" class="watchlist">Добавить в список</a>
+                        </div>
+
+                        <div class="share">
+                            <span class="share__marker">Share: </span>
+                            <div class="addthis_toolbox addthis_default_style ">
+                                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                                <a class="addthis_button_tweet"></a>
+                                <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <h2 class="page-heading">Описание</h2>
+
+                <p class="movie__describe">@Model.Book.Description</p>
+
+            </div>
+
+            <div class="choose-container">
+
+                <h2 class="page-heading">comments (15)</h2>
+
+                <div class="comment-wrapper">
+                    <form id="comment-form" class="comment-form" method='post'>
+                        <textarea class="comment-form__text" placeholder='Add you comment here'></textarea>
+                        <label class="comment-form__info">250 characters left</label>
+                        <button type='submit' class="btn btn-md btn--danger comment-form__btn">add comment</button>
+                    </form>
+
+                    <div class="comment-sets">
+
+                        <div class="comment">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
+                            <p class="comment__date">today | 03:04</p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
+                            <p class="comment__date">22.10.2013 | 14:40</p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+
+                        <div class="comment comment--answer">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Dmitriy Pustovalov</a>
+                            <p class="comment__date">today | 10:19</p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+
+                        <div class="comment comment--last">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Sia Andrews</a>
+                            <p class="comment__date"> 22.10.2013 | 12:31 </p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+
+                        <div id='hide-comments' class="hide-comments">
+                            <div class="comment">
+                                <div class="comment__images">
+                                    <img alt='' src="http://placehold.it/50x50">
+                                </div>
+
+                                <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
+                                <p class="comment__date">today | 03:04</p>
+                                <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                                <a href='#' class="comment__reply">Reply</a>
+                            </div>
+
+                            <div class="comment">
+                                <div class="comment__images">
+                                    <img alt='' src="http://placehold.it/50x50">
+                                </div>
+
+                                <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
+                                <p class="comment__date">22.10.2013 | 14:40</p>
+                                <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                                <a href='#' class="comment__reply">Reply</a>
+                            </div>
+                        </div>
+
+                        <div class="comment-more">
+                            <a href="#" class="watchlist">Show more comments</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{Html.RenderAction("Aside", "Main");}
+
+    </section>

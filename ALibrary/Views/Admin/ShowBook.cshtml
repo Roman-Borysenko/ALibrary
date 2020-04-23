@@ -1,0 +1,27 @@
+﻿@model List<ALibrary.Models.Book>
+@using ALibrary.Helpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Книги</h2>
+@Html.ActionLink("Add new book", "AddBook", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Name", "Name"),
+    grid.Column(header: "Show a book", format: @<a target="_blank" href="@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(item.Categories), subcategory = BookHelper.GetSubcategory(item.Categories), id = item.Id, slug = item.Slug }, null)">Show</a>),
+    grid.Column(header: "Edit book", format: @<a href="@Url.Action("UpdateBook", "Admin", new { id = item.Id })">Edit</a>),
+    grid.Column(header: "Delete book", format: @<a href="@Url.Action("DeleteBook", "Admin", new { id = item.Id })">Delete</a>)
+))

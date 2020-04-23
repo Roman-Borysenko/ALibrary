@@ -1,0 +1,35 @@
+﻿@model ALibrary.Models.AdminCategory
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string method = "AddSubcategory";
+    if(Model != null && Model.IsEditPage == true)
+    {
+        method = "UpdateCategory";
+    }
+}
+
+<h2>Добавить категорию</h2>
+
+@using (Html.BeginForm(method, "Admin", FormMethod.Post))
+{
+    @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+    <div class="form-group">
+        @Html.LabelFor(b => b.CategoryName, "Название категории")
+        @Html.TextBoxFor(b => b.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    if (Model != null && Model.ParentCategory != null)
+    {
+        <div class="form-group">
+            @Html.LabelFor(b => b.ParentCategory, "Родительская категория")
+            @Html.DropDownListFor(b => b.ParentCategory, ViewBag.Categories as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(b => b.ParentCategory, "", new { @class = "text-danger" })
+        </div>
+    }
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </div>
+}

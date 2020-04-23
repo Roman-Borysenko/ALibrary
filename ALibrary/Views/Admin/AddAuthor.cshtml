@@ -1,0 +1,32 @@
+﻿@model ALibrary.Models.AdminAuthor
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string method = "AddAuthor";
+    if (Model != null && Model.IsEditPage == true)
+    {
+        method = "UpdateAuthor";
+    }
+}
+
+<h2>Добавить автора</h2>
+
+@using (Html.BeginForm(method, "Admin", FormMethod.Post))
+{
+    @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+    <div class="form-group">
+        @Html.LabelFor(b => b.Name, "Название категории")
+        @Html.TextBoxFor(b => b.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(b => b.CountryId, "Родительская категория")
+        @Html.DropDownListFor(b => b.CountryId, ViewBag.Countries as SelectList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.CountryId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </div>
+}

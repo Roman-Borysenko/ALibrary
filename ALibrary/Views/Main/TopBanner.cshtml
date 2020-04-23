@@ -1,0 +1,9 @@
+﻿@model ALibrary.Models.Banner
+
+@if (Model != null)
+{
+    <!-- Banner -->
+    <div class="banner-top">
+        <img alt='@Model.Text' src="@Url.Content($"~/Content/images/banners/{Model.Image}")">
+    </div>
+}

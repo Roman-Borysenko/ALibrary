@@ -1,0 +1,25 @@
+﻿@model List<ALibrary.Models.Category>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Категории</h2>
+@Html.ActionLink("Add new category", "AddCategory", "Admin") | @Html.ActionLink("Add new subcategory", "AddSubcategory", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Name", "Name"),
+    grid.Column(header: "Edit Category", format: @<a href="@Url.Action("UpdateCategory", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete Category", format: @<a href="@Url.Action("DeleteCategory", "Admin", new { id = item.Id })">Delete</a>)
+))

@@ -1,0 +1,30 @@
+﻿@model ALibrary.Models.AsideViewModel
+@using ALibrary.Helpers
+
+<aside class="col-sm-4 col-md-3">
+    <div class="sitebar">
+
+        @if (Model.Advertising != null && Model.Advertising.Count > 0)
+        {
+            foreach (var banner in Model.Advertising)
+            {
+                <div class="banner-wrap">
+                    <img alt='@banner.Text' src="@Url.Content($"~/Content/images/banners/{banner.Image}")">
+                </div>
+            }
+        }
+
+        @if (Model.Books != null && Model.Books.Count > 0)
+        {
+            <div class="category category--discuss category--count marginb-sm mobile-category ls-cat">
+                <h3 class="category__title">Самые<br><span class="title-edition">популярные книги</span></h3>
+                <ol>
+                    @foreach (var book in Model.Books)
+                    {
+                        <li><a href="@Url.Action("Index", "Book", new { category = BookHelper.GetParentCategory(book.Categories), subcategory = BookHelper.GetSubcategory(book.Categories), id = book.Id, slug = book.Slug }, null)" class="category__item">@book.Name</a></li>
+                    }
+                </ol>
+            </div>
+        }
+    </div>
+</aside>
