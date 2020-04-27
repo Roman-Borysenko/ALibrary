@@ -37,15 +37,15 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(b => b.Author, "Автор книги" + Model.Author)
-        @Html.DropDownListFor(b => b.Author, ViewBag.Author as SelectList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.Author, "", new { @class = "text-danger" })
+        @Html.LabelFor(b => b.AuthorId, "Автор книги")
+        @Html.DropDownListFor(b => b.AuthorId, ViewBag.Author as SelectList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.AuthorId, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(b => b.Category, "Категория книги")
-        @Html.DropDownListFor(b => b.Category, ViewBag.Categories as SelectList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.Category, "", new { @class = "text-danger" })
+        @Html.LabelFor(b => b.CategoryId, "Категория книги")
+        @Html.DropDownListFor(b => b.CategoryId, ViewBag.Categories as SelectList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">

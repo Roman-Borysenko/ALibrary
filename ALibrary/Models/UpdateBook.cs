@@ -21,9 +21,9 @@ namespace ALibrary.Models
         [Range(0, 5)]
         public int TodayBestChoice { get; set; }
         [Required]
-        public int Author { get; set; }
+        public int AuthorId { get; set; }
         [Required]
-        public int Category { get; set; }
+        public int CategoryId { get; set; }
         [FileFormat(".pdf")]
         public HttpPostedFileBase BookFile { get; set; }
         [FileFormat(".jpg|.jpeg|.png")]

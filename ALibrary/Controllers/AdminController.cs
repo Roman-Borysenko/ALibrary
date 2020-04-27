@@ -102,8 +102,8 @@ namespace ALibrary.Controllers
                     NumberPages = book.NumberPages,
                     Description = book.Description,
                     TodayBestChoice = book.TodayBestChoice,
-                    Author = book.Author.Id,
-                    Category = book.Categories.FirstOrDefault().Id
+                    AuthorId = book.Author.Id,
+                    CategoryId = book.Categories.FirstOrDefault().Id
                 };
 
                 return View(updateBook);
@@ -140,13 +140,13 @@ namespace ALibrary.Controllers
                 updateBook.Slug = book.Name.GenerateSlug();
                 updateBook.Year = book.Year;
                 updateBook.NumberPages = book.NumberPages;
-                updateBook.Author = context.Authors.FirstOrDefault(a => a.Id == book.Author);
+                updateBook.Author = context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
                 updateBook.Description = book.Description;
                 updateBook.View = 0;
                 updateBook.Rating = 3;
                 updateBook.TodayBestChoice = book.TodayBestChoice;
                 updateBook.Create = DateTime.Now;
-                updateBook.Categories = context.Categories.Where(c => c.Id == book.Category).ToList();
+                updateBook.Categories = context.Categories.Where(c => c.Id == book.CategoryId).ToList();
 
                 context.SaveChanges();
             }
