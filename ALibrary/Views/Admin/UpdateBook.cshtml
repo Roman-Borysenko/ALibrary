@@ -5,62 +5,69 @@
 
 @using (Html.BeginForm("UpdateBook", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
-    <div class="form-group">
-        @Html.LabelFor(b => b.Name, "Имя")
-        @Html.TextBoxFor(b => b.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
-    </div>
+    <div class="row">
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.Year, "Год написания")
-        @Html.TextBoxFor(b => b.Year, new { @type = "number", @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.Year, "", new { @class = "text-danger" })
-    </div>
+        <div class="col-12 col-md-8">
+            @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+            <div class="form-group">
+                @Html.LabelFor(b => b.Name, "Имя")
+                @Html.TextBoxFor(b => b.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.NumberPages, "Количество страниц")
-        @Html.TextBoxFor(b => b.NumberPages, new { @type = "number", @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.NumberPages, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.Year, "Год написания")
+                @Html.TextBoxFor(b => b.Year, new { @type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Year, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.Description, "Описание книги")
-        @Html.TextAreaFor(b => b.Description, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.NumberPages, "Количество страниц")
+                @Html.TextBoxFor(b => b.NumberPages, new { @type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.NumberPages, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.TodayBestChoice, "Рекомендовать как выбор дня")
-        @Html.TextBoxFor(b => b.TodayBestChoice, new { @type = "number", @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.TodayBestChoice, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.Description, "Описание книги")
+                @Html.TextAreaFor(b => b.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.AuthorId, "Автор книги")
-        @Html.DropDownListFor(b => b.AuthorId, ViewBag.Author as SelectList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.AuthorId, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.TodayBestChoice, "Рекомендовать как выбор дня")
+                @Html.TextBoxFor(b => b.TodayBestChoice, new { @type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.TodayBestChoice, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.CategoryId, "Категория книги")
-        @Html.DropDownListFor(b => b.CategoryId, ViewBag.Categories as SelectList, new { @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.AuthorId, "Автор книги")
+                @Html.DropDownListFor(b => b.AuthorId, ViewBag.Author as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.AuthorId, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.BookFile, "Книга")
-        @Html.TextBoxFor(b => b.BookFile, new { @type = "file", @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.BookFile, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.CategoryId, "Категория книги")
+                @Html.DropDownListFor(b => b.CategoryId, ViewBag.Categories as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(b => b.BookCover, "Обложка книги")
-        @Html.TextBoxFor(b => b.BookCover, new { @type = "file", @class = "form-control" })
-        @Html.ValidationMessageFor(b => b.BookCover, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Обновить</button>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(b => b.BookFile, "Книга")
+                @Html.TextBoxFor(b => b.BookFile, new { @type = "file", @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.BookFile, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Обновить</button>
+            <div class="form-group">
+                <img src="@Url.Content("~/Content/images/book/" + Model.ImageName)" class="img-thumbnail" id="image">
+                @Html.LabelFor(b => b.BookCover, "Обложка книги")
+                @Html.TextBoxFor(b => b.BookCover, new { @type = "file", @class = "form-control", @id = "file" })
+                @Html.ValidationMessageFor(b => b.BookCover, "", new { @class = "text-danger" })
+            </div>
+        </div>
     </div>
 }

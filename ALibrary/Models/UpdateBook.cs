@@ -28,5 +28,6 @@ namespace ALibrary.Models
         public HttpPostedFileBase BookFile { get; set; }
         [FileFormat(".jpg|.jpeg|.png")]
         public HttpPostedFileBase BookCover { get; set; }
+        public string ImageName { get; set; }
     }
 }

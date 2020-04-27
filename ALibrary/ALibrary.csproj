@@ -619,6 +619,7 @@
     <Content Include="Scripts\js\min\custom.min.js" />
     <Content Include="Scripts\js\min\form.min.js" />
     <Content Include="Scripts\js\min\jquery.mobile.menu.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\rs-plugin\assets\arrowleft.png" />
     <Content Include="Scripts\rs-plugin\assets\arrowright.png" />

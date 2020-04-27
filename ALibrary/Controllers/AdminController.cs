@@ -103,7 +103,8 @@ namespace ALibrary.Controllers
                     Description = book.Description,
                     TodayBestChoice = book.TodayBestChoice,
                     AuthorId = book.Author.Id,
-                    CategoryId = book.Categories.FirstOrDefault().Id
+                    CategoryId = book.Categories.FirstOrDefault().Id,
+                    ImageName = book.Image
                 };
 
                 return View(updateBook);
