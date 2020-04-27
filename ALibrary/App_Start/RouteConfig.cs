@@ -146,6 +146,24 @@ namespace ALibrary
             #region Routes Site
 
             routes.MapRoute(
+                name: "Watchlist",
+                url: "watchlist",
+                defaults: new { controller = "Book", action = "Watchlist" }
+            );
+
+            routes.MapRoute(
+                name: "WatchlistPage",
+                url: "watchlist/{page}",
+                defaults: new { controller = "Book", action = "Watchlist" }
+            );
+
+            routes.MapRoute(
+                name: "AddComment",
+                url: "comment",
+                defaults: new { controller = "Book", action = "AddComment" }
+            );
+
+            routes.MapRoute(
                 name: "Register",
                 url: "register",
                 defaults: new { controller = "Account", action = "Register" }
@@ -191,6 +209,12 @@ namespace ALibrary
                 name: "SubcategoryPage",
                 url: "{category}/{subcategory}/page/{page}",
                 defaults: new { controller = "Category", action = "Subcategory" }
+            );
+
+            routes.MapRoute(
+                name: "ReadBook",
+                url: "read/{id}/{slug}",
+                defaults: new { controller = "Book", action = "ReadBook" }
             );
 
             routes.MapRoute(

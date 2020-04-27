@@ -44,8 +44,16 @@
                         <p class="movie__option"><strong>Автор: </strong><a>@book.Author.Name</a></p>
 
                         <div class="movie__btns">
-                            <a href="#" class="btn btn-md btn--warning">Читать</a>
-                            <a href="#" class="watchlist">Добавить в список</a>
+                            <a href="@Url.Action("ReadBook", "Book", new { id = book.Id, slug = book.Slug })" class="btn btn-md btn--warning">Читать</a>
+                            @if (User.Identity.IsAuthenticated && Model.PageType != PageType.Watchlist)
+                            {
+                                using (Html.BeginForm("Watchlist", "Book", FormMethod.Post))
+                                {
+                                    <input name="id" value="@book.Id" type="hidden" />
+                                    <input name="slug" value="@book.Slug" type="hidden" />
+                                    <button class="watchlist">Добавить в список</button>
+                                }
+                            }
                         </div>
 
                         <div class="preview-footer">
@@ -60,8 +68,8 @@
                                         else
                                         {
                                             <span class="book_star"></span>
+                                            }
                                         }
-                                    }
                                 </div>
                             </div>
                         </div>
@@ -86,6 +94,10 @@
                     @if (Model.PageType == PageType.Search)
                     {
                         @Html.PagedListPager(Model.Books, page => @Url.RouteUrl("Search", new { search = Model.Query["search"], fieldSearch = Model.Query["fieldSearch"], page = page }))
+                    }
+                    @if (Model.PageType == PageType.Watchlist)
+                    {
+                        @Html.PagedListPager(Model.Books, page => @Url.RouteUrl("WatchlistPage", new { page }))
                     }
                 </div>
             </div>

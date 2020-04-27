@@ -17,10 +17,11 @@
                     @User.Identity.GetUserName()
                 </a>
                 <ul class="auth__function">
-                    <li><a href="#" class="auth__function-item">Watchlist</a></li>
-                    <li><a href="#" class="auth__function-item">Booked tickets</a></li>
-                    <li><a href="#" class="auth__function-item">Discussion</a></li>
-                    <li><a href="#" class="auth__function-item">Settings</a></li>
+                    @if (@User.IsInRole("Admin"))
+                    {
+                        <li><a href="@Url.Action("Index", "Admin")" class="auth__function-item">Админ панель</a></li>
+                    }
+                    <li><a href="@Url.Action("Watchlist", "Book")" class="auth__function-item">Список наблюдения</a></li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()" class="auth__function-item">Выйти</a></li>
                 </ul>
             </div>

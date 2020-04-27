@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ALibrary.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -29,7 +29,7 @@ namespace ALibrary.Controllers
             return View(books);
         }
 
-        private void GetAuthor()
+        private void GetAuthorAndCategories()
         {
             using (var context = new DataContext())
             {
@@ -42,7 +42,7 @@ namespace ALibrary.Controllers
 
         public ActionResult AddBook()
         {
-            GetAuthor();
+            GetAuthorAndCategories();
             return View();
         }
         [HttpPost]
@@ -50,7 +50,7 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthor();
+                GetAuthorAndCategories();
                 return View(book);
             }
 
@@ -88,11 +88,11 @@ namespace ALibrary.Controllers
 
         public ActionResult UpdateBook(int id)
         {
-            GetAuthor();
+            GetAuthorAndCategories();
 
             using (var context = new DataContext())
             {
-                var book = context.Books.Include("Categories").Include("Author").Include("Author.Country").FirstOrDefault(b => b.Id == id);
+                var book = context.Books.Include("Author").Include("Categories").Include("Author.Country").FirstOrDefault(b => b.Id == id);
 
                 var updateBook = new UpdateBook
                 {
@@ -114,7 +114,7 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthor();
+                GetAuthorAndCategories();
                 return View(book);
             }
 
@@ -246,7 +246,7 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthor();
+                GetAuthorAndCategories();
                 return View("AddSubcategory", category);
             }
 

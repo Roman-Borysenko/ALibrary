@@ -254,6 +254,18 @@
     <Compile Include="Migrations\202004191300197_AddedNewModelForAdvertising.Designer.cs">
       <DependentUpon>202004191300197_AddedNewModelForAdvertising.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241200542_CreateNewModelWatchlist.cs" />
+    <Compile Include="Migrations\202004241200542_CreateNewModelWatchlist.Designer.cs">
+      <DependentUpon>202004241200542_CreateNewModelWatchlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004241230324_UpdateModelWatchlist.cs" />
+    <Compile Include="Migrations\202004241230324_UpdateModelWatchlist.Designer.cs">
+      <DependentUpon>202004241230324_UpdateModelWatchlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004242203057_AddComments.cs" />
+    <Compile Include="Migrations\202004242203057_AddComments.Designer.cs">
+      <DependentUpon>202004242203057_AddComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddBook.cs" />
@@ -266,6 +278,7 @@
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -273,7 +286,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Slide.cs" />
     <Compile Include="Models\UpdateBook.cs" />
+    <Compile Include="Models\Watchlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +300,141 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\external\idangerous.swiper.css" />
+    <Content Include="Content\css\external\jquery.selectbox.css" />
+    <Content Include="Content\css\external\magnific-popup.css" />
+    <Content Include="Content\css\gozha-nav.css" />
+    <Content Include="Content\css\img\select-icons.png" />
+    <Content Include="Content\css\rs-plugin\css\settings-ie8.css" />
+    <Content Include="Content\css\rs-plugin\css\settings.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\touch.css" />
+    <Content Include="Content\fonts\aleo-bold.svg" />
+    <Content Include="Content\fonts\aleo-bolditalic.svg" />
+    <Content Include="Content\fonts\aleo-italic.svg" />
+    <Content Include="Content\fonts\aleo-regular.svg" />
+    <Content Include="Content\fonts\MuseoSans_500-webfont.svg" />
+    <Content Include="Content\images\ajax-loader.GIF" />
+    <Content Include="Content\images\apple-store.svg" />
+    <Content Include="Content\images\banners\2-01-.jpg" />
+    <Content Include="Content\images\banners\9780203797501.jpg" />
+    <Content Include="Content\images\banners\abstract-vectors-with-hexagon-backgrounds-for-presentations-banners-brochures-book-pages-and-more-2A7HCXE.jpg" />
+    <Content Include="Content\images\banners\b.jpg" />
+    <Content Include="Content\images\banners\back-to-school-card-template-banners-set-bus-kids-chalkboards-book-education-equipment-vector-illustration-131092175.jpg" />
+    <Content Include="Content\images\banners\book-cover-338.jpg" />
+    <Content Include="Content\images\banners\d90edebe4a203bf2414f78fa3a1c8ef9.jpg" />
+    <Content Include="Content\images\banners\The-Morgan-Young-Series-FB-Banner.jpg" />
+    <Content Include="Content\images\banners\Together-We-Fall-Series-FB-Banner.jpg" />
+    <Content Include="Content\images\banners\top-banner.jpg" />
+    <Content Include="Content\images\bg-image.jpg" />
+    <Content Include="Content\images\bg-video.jpg" />
+    <Content Include="Content\images\blanck.png" />
+    <Content Include="Content\images\book\0277d18331341c5c6aa60e5074a18886.jpg" />
+    <Content Include="Content\images\book\0fda8aee-3_puz-lee-saw-that.jpg" />
+    <Content Include="Content\images\book\14196845_4.jpg" />
+    <Content Include="Content\images\book\2_318_40.jpg" />
+    <Content Include="Content\images\book\47296_74752.jpg" />
+    <Content Include="Content\images\book\53466_98138.jpg" />
+    <Content Include="Content\images\book\5fa0bab0-2_puz-lee-saw-that.jpg" />
+    <Content Include="Content\images\book\64b79bd0-3_Screenshot_3.png" />
+    <Content Include="Content\images\book\6bcd495b-d_f1.jpg" />
+    <Content Include="Content\images\book\9780198320852_1.jpg" />
+    <Content Include="Content\images\book\c919f363a34d130371975d56f62df1f5.jpg" />
+    <Content Include="Content\images\book\fa704e75-3_knVxGW1.jpg" />
+    <Content Include="Content\images\book\fbda5f6a-a_knVxGW1.jpg" />
+    <Content Include="Content\images\book\img569_3_37.jpg" />
+    <Content Include="Content\images\book\img585_2_27.jpg" />
+    <Content Include="Content\images\book\img641_28.jpg" />
+    <Content Include="Content\images\close-open-menu-icon.png" />
+    <Content Include="Content\images\components\arrow.svg" />
+    <Content Include="Content\images\components\bg-movie.png" />
+    <Content Include="Content\images\components\bg-time-hover.png" />
+    <Content Include="Content\images\components\bg-time.png" />
+    <Content Include="Content\images\components\bg-tooltip.png" />
+    <Content Include="Content\images\components\checked.png" />
+    <Content Include="Content\images\components\close.svg" />
+    <Content Include="Content\images\components\corner-lb.png" />
+    <Content Include="Content\images\components\corner-left.png" />
+    <Content Include="Content\images\components\corner-lt.png" />
+    <Content Include="Content\images\components\corner-rb.png" />
+    <Content Include="Content\images\components\corner-right.png" />
+    <Content Include="Content\images\components\corner-rt.png" />
+    <Content Include="Content\images\components\cursor.png" />
+    <Content Include="Content\images\components\line-marker.png" />
+    <Content Include="Content\images\components\plus-minus-icon.png" />
+    <Content Include="Content\images\components\price-pattern.jpg" />
+    <Content Include="Content\images\components\scarf.png" />
+    <Content Include="Content\images\components\sits_mobile.png" />
+    <Content Include="Content\images\components\wave-danger.svg" />
+    <Content Include="Content\images\components\wave-dark-sm.svg" />
+    <Content Include="Content\images\components\wave-dark.svg" />
+    <Content Include="Content\images\components\wave-hover.svg" />
+    <Content Include="Content\images\components\wave-light-sm.svg" />
+    <Content Include="Content\images\components\wave-light.svg" />
+    <Content Include="Content\images\components\wave-main.svg" />
+    <Content Include="Content\images\components\wave.svg" />
+    <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\google-play.svg" />
+    <Content Include="Content\images\icons\actors.svg" />
+    <Content Include="Content\images\icons\camera.svg" />
+    <Content Include="Content\images\icons\comment.svg" />
+    <Content Include="Content\images\icons\countrr.svg" />
+    <Content Include="Content\images\icons\country.svg" />
+    <Content Include="Content\images\icons\director.svg" />
+    <Content Include="Content\images\icons\fave-hover.svg" />
+    <Content Include="Content\images\icons\fave.svg" />
+    <Content Include="Content\images\icons\film.svg" />
+    <Content Include="Content\images\icons\fiml.svg" />
+    <Content Include="Content\images\icons\gift-dark.svg" />
+    <Content Include="Content\images\icons\gift-light.svg" />
+    <Content Include="Content\images\icons\heart.svg" />
+    <Content Include="Content\images\icons\left-arrow-danger.svg" />
+    <Content Include="Content\images\icons\left-arrow-dark.svg" />
+    <Content Include="Content\images\icons\left-arrow.svg" />
+    <Content Include="Content\images\icons\location.svg" />
+    <Content Include="Content\images\icons\mause.svg" />
+    <Content Include="Content\images\icons\reply-hover.svg" />
+    <Content Include="Content\images\icons\reply.svg" />
+    <Content Include="Content\images\icons\retweet-hover.svg" />
+    <Content Include="Content\images\icons\retweet.svg" />
+    <Content Include="Content\images\icons\right-arrow-danger.svg" />
+    <Content Include="Content\images\icons\right-arrow-dark.svg" />
+    <Content Include="Content\images\icons\right-arrow.svg" />
+    <Content Include="Content\images\icons\sm-left-arrow-hover.svg" />
+    <Content Include="Content\images\icons\sm-left-arrow.svg" />
+    <Content Include="Content\images\icons\sm-right-arrow-hover.svg" />
+    <Content Include="Content\images\icons\sm-right-arrow.svg" />
+    <Content Include="Content\images\icons\smile-dark.svg" />
+    <Content Include="Content\images\icons\smile-light.svg" />
+    <Content Include="Content\images\icons\snow-dark.svg" />
+    <Content Include="Content\images\icons\snow-light.svg" />
+    <Content Include="Content\images\icons\speech.svg" />
+    <Content Include="Content\images\icons\stars-light.svg" />
+    <Content Include="Content\images\icons\stars.svg" />
+    <Content Include="Content\images\icons\stroke.svg" />
+    <Content Include="Content\images\icons\users-dark.svg" />
+    <Content Include="Content\images\icons\users-light.svg" />
+    <Content Include="Content\images\icons\wizard-dark.svg" />
+    <Content Include="Content\images\icons\wizard-light.svg" />
+    <Content Include="Content\images\logo-dark.png" />
+    <Content Include="Content\images\logo-lg.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\payment\pay1.png" />
+    <Content Include="Content\images\payment\pay2.png" />
+    <Content Include="Content\images\payment\pay3.png" />
+    <Content Include="Content\images\payment\pay4.png" />
+    <Content Include="Content\images\payment\pay5.png" />
+    <Content Include="Content\images\payment\pay6.png" />
+    <Content Include="Content\images\payment\pay7.png" />
+    <Content Include="Content\images\rate\cancel-off.png" />
+    <Content Include="Content\images\rate\cancel-on.png" />
+    <Content Include="Content\images\rate\star-half.png" />
+    <Content Include="Content\images\rate\star-off.png" />
+    <Content Include="Content\images\rate\star-off.svg" />
+    <Content Include="Content\images\rate\star-on.png" />
+    <Content Include="Content\images\rate\star-on.svg" />
+    <Content Include="Content\images\tickets.png" />
+    <Content Include="Content\images\windows-store.svg" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\PagedList.css" />
@@ -352,6 +506,39 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\css\less\base\base.less" />
+    <Content Include="Content\css\less\base\bootstrap-mixins.less" />
+    <Content Include="Content\css\less\base\bootstrap-scaffolding.less" />
+    <Content Include="Content\css\less\base\bootstrap-type.less" />
+    <Content Include="Content\css\less\base\bootstrap-variables.less" />
+    <Content Include="Content\css\less\base\normalize.less" />
+    <Content Include="Content\css\less\base\vars.less" />
+    <Content Include="Content\css\less\layout\bootstrap-grid.less" />
+    <Content Include="Content\css\less\layout\responsive-utilities.less" />
+    <Content Include="Content\css\less\objects\alerts.less" />
+    <Content Include="Content\css\less\objects\buttons.less" />
+    <Content Include="Content\css\less\objects\component-animations.less" />
+    <Content Include="Content\css\less\objects\navbar.less" />
+    <Content Include="Content\css\less\objects\navs.less" />
+    <Content Include="Content\css\less\objects\objects.less" />
+    <Content Include="Content\css\less\objects\panels.less" />
+    <Content Include="Content\css\less\state\state.less" />
+    <Content Include="Content\css\style.less" />
+    <Content Include="Content\fonts\aleo-bold.eot" />
+    <Content Include="Content\fonts\aleo-bold.ttf" />
+    <Content Include="Content\fonts\aleo-bold.woff" />
+    <Content Include="Content\fonts\aleo-bolditalic.eot" />
+    <Content Include="Content\fonts\aleo-bolditalic.ttf" />
+    <Content Include="Content\fonts\aleo-bolditalic.woff" />
+    <Content Include="Content\fonts\aleo-italic.eot" />
+    <Content Include="Content\fonts\aleo-italic.ttf" />
+    <Content Include="Content\fonts\aleo-italic.woff" />
+    <Content Include="Content\fonts\aleo-regular.eot" />
+    <Content Include="Content\fonts\aleo-regular.ttf" />
+    <Content Include="Content\fonts\aleo-regular.woff" />
+    <Content Include="Content\fonts\MuseoSans_500-webfont.eot" />
+    <Content Include="Content\fonts\MuseoSans_500-webfont.ttf" />
+    <Content Include="Content\fonts\MuseoSans_500-webfont.woff" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
@@ -410,7 +597,75 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\external\count.down.js" />
+    <Content Include="Scripts\js\external\form-element.js" />
+    <Content Include="Scripts\js\external\idangerous.swiper.min.js" />
+    <Content Include="Scripts\js\external\infobox.js" />
+    <Content Include="Scripts\js\external\jquery-1.10.1.min.js" />
+    <Content Include="Scripts\js\external\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\js\external\jquery.inview.js" />
+    <Content Include="Scripts\js\external\jquery.knob.js" />
+    <Content Include="Scripts\js\external\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\js\external\jquery.raty.js" />
+    <Content Include="Scripts\js\external\jquery.selectbox-0.2.min.js" />
+    <Content Include="Scripts\js\external\min\count.down.min.js" />
+    <Content Include="Scripts\js\external\min\jquery.knob.min.js" />
+    <Content Include="Scripts\js\external\min\twitterfeed.min.js" />
+    <Content Include="Scripts\js\external\modernizr.custom.js" />
+    <Content Include="Scripts\js\external\twitterfeed.js" />
+    <Content Include="Scripts\js\form.js" />
+    <Content Include="Scripts\js\jquery.mobile.menu.js" />
+    <Content Include="Scripts\js\min\custom.min.js" />
+    <Content Include="Scripts\js\min\form.min.js" />
+    <Content Include="Scripts\js\min\jquery.mobile.menu.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\rs-plugin\assets\arrowleft.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrowright.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_left.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_right.png" />
+    <Content Include="Scripts\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="Scripts\rs-plugin\assets\black50.png" />
+    <Content Include="Scripts\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="Scripts\rs-plugin\assets\bullet.png" />
+    <Content Include="Scripts\rs-plugin\assets\bullets.png" />
+    <Content Include="Scripts\rs-plugin\assets\bullets2.png" />
+    <Content Include="Scripts\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="Scripts\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Scripts\rs-plugin\assets\grain.png" />
+    <Content Include="Scripts\rs-plugin\assets\gridtile.png" />
+    <Content Include="Scripts\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Scripts\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Scripts\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Scripts\rs-plugin\assets\large_left.png" />
+    <Content Include="Scripts\rs-plugin\assets\large_right.png" />
+    <Content Include="Scripts\rs-plugin\assets\loader.gif" />
+    <Content Include="Scripts\rs-plugin\assets\loader2.gif" />
+    <Content Include="Scripts\rs-plugin\assets\navigdots.png" />
+    <Content Include="Scripts\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="Scripts\rs-plugin\assets\shadow1.png" />
+    <Content Include="Scripts\rs-plugin\assets\shadow2.png" />
+    <Content Include="Scripts\rs-plugin\assets\shadow3.png" />
+    <Content Include="Scripts\rs-plugin\assets\small_left.png" />
+    <Content Include="Scripts\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="Scripts\rs-plugin\assets\small_right.png" />
+    <Content Include="Scripts\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="Scripts\rs-plugin\assets\timer.png" />
+    <Content Include="Scripts\rs-plugin\assets\timerdot.png" />
+    <Content Include="Scripts\rs-plugin\assets\transparent.jpg" />
+    <Content Include="Scripts\rs-plugin\assets\white50.png" />
+    <Content Include="Scripts\rs-plugin\font\revicons.svg" />
+    <Content Include="Scripts\rs-plugin\images\decor_inside.png" />
+    <Content Include="Scripts\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="Scripts\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="Scripts\rs-plugin\images\gradient\g30.png" />
+    <Content Include="Scripts\rs-plugin\images\gradient\g40.png" />
+    <Content Include="Scripts\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="Scripts\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="Scripts\rs-plugin\js\jquery.themepunch.revolution.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -463,10 +718,25 @@
     <Content Include="Views\Admin\AddAuthor.cshtml" />
     <Content Include="Views\Admin\ShowCountries.cshtml" />
     <Content Include="Views\Admin\AddCountry.cshtml" />
+    <Content Include="Scripts\rs-plugin\assets\arrows.psd" />
+    <Content Include="Scripts\rs-plugin\assets\bullets.psd" />
+    <Content Include="Scripts\rs-plugin\assets\small_arrows.psd" />
+    <Content Include="Scripts\rs-plugin\font\revicons.eot" />
+    <Content Include="Scripts\rs-plugin\font\revicons.ttf" />
+    <Content Include="Scripts\rs-plugin\font\revicons.woff" />
+    <Content Include="Views\Book\ReadBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\books\" />
+    <Folder Include="Content\images\cinema\" />
+    <Folder Include="Content\images\client-photo\" />
+    <Folder Include="Content\images\comment\" />
+    <Folder Include="Content\images\gallery\large\" />
+    <Folder Include="Content\images\gallery\thumb\" />
+    <Folder Include="Content\images\new\" />
+    <Folder Include="Content\images\slides\" />
+    <Folder Include="Content\images\trailers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -518,6 +788,19 @@
     <EmbeddedResource Include="Migrations\202004191300197_AddedNewModelForAdvertising.resx">
       <DependentUpon>202004191300197_AddedNewModelForAdvertising.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241200542_CreateNewModelWatchlist.resx">
+      <DependentUpon>202004241200542_CreateNewModelWatchlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241230324_UpdateModelWatchlist.resx">
+      <DependentUpon>202004241230324_UpdateModelWatchlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004242203057_AddComments.resx">
+      <DependentUpon>202004242203057_AddComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -540,8 +823,7 @@
           <IISUrl>http://localhost:44343/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://alibrary-book.somee.com/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -21,5 +21,6 @@ namespace ALibrary.Models
         public int TodayBestChoice { get; set; }
         public DateTime Create { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -15,5 +15,7 @@ namespace ALibrary.Models
         public DbSet<Country> Countries { get; set; }
         public DbSet<Slide> Slider { get; set; }
         public DbSet<Banner> Advertising { get; set; }
+        public DbSet<Watchlist> Watchlists { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

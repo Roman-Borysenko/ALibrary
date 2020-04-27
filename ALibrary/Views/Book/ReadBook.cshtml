@@ -1,0 +1,7 @@
+﻿@model ALibrary.Models.Book
+
+    <div class="container">
+        <h2 class="page-heading">@Model.Name</h2>
+
+        <iframe class="read-book" type="application/pdf" oncontextmenu="killContextMenu();" src="@Url.Content("~/Content/books/" + Model.BookPath)"> </iframe>
+    </div>

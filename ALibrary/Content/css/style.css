@@ -10019,3 +10019,22 @@ ul#navigation li.mega-menu__nav-item:hover:before {
 .pagination li.active a {
     color: #fff;
 }
+.logo {
+    color: #fff !important;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    top: 5px;
+}
+.logo span {
+    color: orange;
+}
+a.login:hover {
+    color: #fff !important;
+}
+
+.read-book {
+    width: 100%;
+    min-height: 800px;
+    margin-top: 20px;
+}
