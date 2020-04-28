@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ALibrary.Controllers
@@ -57,7 +58,9 @@ namespace ALibrary.Controllers
             using (var context = new DataContext())
             {
                 string bookCover = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(book.BookCover.FileName);
-                book.BookCover.SaveAs(Server.MapPath("~/Content/images/book/" + bookCover));
+                WebImage img = new WebImage(book.BookCover.InputStream);
+                img.Resize(380, 600);
+                img.Save(Server.MapPath("~/Content/images/book/" + bookCover));
 
                 string bookPath = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(book.BookFile.FileName);
                 book.BookFile.SaveAs(Server.MapPath("~/Content/books/" + bookPath));
@@ -126,7 +129,9 @@ namespace ALibrary.Controllers
                 if (book.BookCover != null)
                 {
                     string bookCover = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(book.BookCover.FileName);
-                    book.BookCover.SaveAs(Server.MapPath("~/Content/images/book/" + bookCover));
+                    WebImage img = new WebImage(book.BookCover.InputStream);
+                    img.Resize(380, 600);
+                    img.Save(Server.MapPath("~/Content/images/book/" + bookCover));
                     updateBook.Image = bookCover;
                 }
 
