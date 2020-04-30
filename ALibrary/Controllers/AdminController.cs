@@ -1,16 +1,14 @@
 ﻿using ALibrary.Models;
-using Newtonsoft.Json;
 using SlugGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ALibrary.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -439,6 +437,81 @@ namespace ALibrary.Controllers
             }
 
             return Redirect("/admin/countries");
+        }
+
+        #endregion
+
+        #region Article
+
+        public void GetArticlesAndTags()
+        {
+            using (var context = new DataContext())
+            {
+                SelectList articles = new SelectList(context.Articles.ToList(), "Id", "Title");
+                ViewBag.Articles = articles;
+
+                SelectList tags = new SelectList(context.ArticleTags.ToList(), "Id", "Name");
+                ViewBag.Tags = tags;
+            }
+        }
+
+        public ActionResult ShowArticles()
+        {
+            return View();
+        }
+        public ActionResult AddArticle()
+        {
+            GetArticlesAndTags();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddArticle(AddArticleViewModel article)
+        {
+            if (!ModelState.IsValid)
+            {
+                GetArticlesAndTags();
+                return View(article);
+            }
+
+            var articleImages = new List<ArticleImages>();
+            foreach (var image in article.Images)
+            {
+                if (image != null)
+                {
+                    string imagePath = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(image.FileName);
+                    articleImages.Add(new ArticleImages { ImagePath = imagePath });
+                    WebImage img = new WebImage(image.InputStream);
+                    img.Resize(1600, 600);
+                    img.Save(Server.MapPath("~/Content/images/articles/" + imagePath));
+                }
+            }
+
+            using (var context = new DataContext())
+            {
+                var articleSave = new Article
+                {
+                    Title = article.Title,
+                    Slug = article.Title.GenerateSlug(),
+                    Description = article.Description,
+                    Text = article.Text,
+                    Create = DateTime.Now,
+                    ArticleImages = articleImages,
+                    ArticleTags = article.ArticleTags != null ? context.ArticleTags.Where(a => article.ArticleTags.Contains(a.Id)).ToList() : null
+                };
+
+                if (article.SimilarArticles != null && article.SimilarArticles.Count() > 0)
+                {
+                    foreach (var similar in article.SimilarArticles)
+                    {
+                        context.SimilarArticles.Add(new SimilarArticle { Article = articleSave, SimilarArticleId = similar });
+                    }
+                }
+
+                context.Articles.Add(articleSave);
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/articles");
         }
 
         #endregion

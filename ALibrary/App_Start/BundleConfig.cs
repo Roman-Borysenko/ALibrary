@@ -10,6 +10,7 @@ namespace ALibrary
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/chosen.jquery.min.js",
                         "~/Scripts/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -25,6 +26,7 @@ namespace ALibrary
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/chosen.css",
                       "~/Content/site.css"));
         }
     }

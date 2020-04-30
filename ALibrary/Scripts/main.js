@@ -1,28 +1,23 @@
-﻿document.addEventListener('DOMContentLoaded', e => {
-    let file = document.querySelector('#file'),        // Выбираем нужные
-        preview = document.querySelector('#image');  // элементы
+﻿$(document).ready(function () {
 
-    file.addEventListener('change', e => { // При изменении input
-        if (file.files.length === 0) // Если ничего не выбрано - выходим
-            return;
+    $(".chosen-select").chosen();
 
-        let f = file.files[0],     // Берём первый файл
-            fr = new FileReader(); // Создаём объект чтения файлов
+    function readURL(input) {
 
-        // В свойсте type mime (что-то типа image/png)
-        if (f.type.indexOf('image') === -1) // Если файл не является изображением - выходим
-            return;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-        fr.onload = e => {
-            if (getComputedStyle(preview, null).display === 'none') // Если нужно - показываем img
-                preview.style.display = 'block';
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            };
 
-            preview.src = e.target.result; // В src будет что-то типа data:image/jpeg;base64,....
+            reader.readAsDataURL(input.files[0]);
         }
-        fr.readAsDataURL(f); // Читаем blob выбранного файла
-    });
-});
+    }
 
-$(document).on('ready', function () {
-    
+    $('#file').on('change', function () {
+        console.log("change");
+        readURL(this);
+        $(this).clone(true).prop('value', null).appendTo(".images");
+    });
 });

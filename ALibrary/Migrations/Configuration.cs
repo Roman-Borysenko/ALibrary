@@ -10,7 +10,6 @@ namespace ALibrary.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ALibrary.Models.DataContext";
         }
 
         protected override void Seed(ALibrary.Models.DataContext context)

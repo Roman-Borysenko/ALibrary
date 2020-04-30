@@ -194,6 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -205,72 +206,29 @@
     <Compile Include="Helpers\BookHelper.cs" />
     <Compile Include="Helpers\FieldsSearch.cs" />
     <Compile Include="Helpers\FileFormatAttribute.cs" />
+    <Compile Include="Helpers\ListFileForrmatAttribute.cs" />
     <Compile Include="Helpers\PageType.cs" />
-    <Compile Include="Migrations\202004072223405_InitialCreate.cs" />
-    <Compile Include="Migrations\202004072223405_InitialCreate.Designer.cs">
-      <DependentUpon>202004072223405_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202004292226565_Initial.cs" />
+    <Compile Include="Migrations\202004292226565_Initial.Designer.cs">
+      <DependentUpon>202004292226565_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004072230359_FirstMigration.cs" />
-    <Compile Include="Migrations\202004072230359_FirstMigration.Designer.cs">
-      <DependentUpon>202004072230359_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202004300103041_AddModelSimilarArticle.cs" />
+    <Compile Include="Migrations\202004300103041_AddModelSimilarArticle.Designer.cs">
+      <DependentUpon>202004300103041_AddModelSimilarArticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004072237155_AddFieldSlug.cs" />
-    <Compile Include="Migrations\202004072237155_AddFieldSlug.Designer.cs">
-      <DependentUpon>202004072237155_AddFieldSlug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004101329256_AddTableAuthor.cs" />
-    <Compile Include="Migrations\202004101329256_AddTableAuthor.Designer.cs">
-      <DependentUpon>202004101329256_AddTableAuthor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004101357189_AddTableCountry.cs" />
-    <Compile Include="Migrations\202004101357189_AddTableCountry.Designer.cs">
-      <DependentUpon>202004101357189_AddTableCountry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004101415412_UpdateTableBook.cs" />
-    <Compile Include="Migrations\202004101415412_UpdateTableBook.Designer.cs">
-      <DependentUpon>202004101415412_UpdateTableBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004101452274_AddedTableFields.cs" />
-    <Compile Include="Migrations\202004101452274_AddedTableFields.Designer.cs">
-      <DependentUpon>202004101452274_AddedTableFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004102227199_AddedFieldTodayBestChoiceInCategory.cs" />
-    <Compile Include="Migrations\202004102227199_AddedFieldTodayBestChoiceInCategory.Designer.cs">
-      <DependentUpon>202004102227199_AddedFieldTodayBestChoiceInCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004111215270_AddedFieldImageForBook.cs" />
-    <Compile Include="Migrations\202004111215270_AddedFieldImageForBook.Designer.cs">
-      <DependentUpon>202004111215270_AddedFieldImageForBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004111547169_AddedFieldNumberPagesForBook.cs" />
-    <Compile Include="Migrations\202004111547169_AddedFieldNumberPagesForBook.Designer.cs">
-      <DependentUpon>202004111547169_AddedFieldNumberPagesForBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004182221013_MakeNewModelForTheSlider.cs" />
-    <Compile Include="Migrations\202004182221013_MakeNewModelForTheSlider.Designer.cs">
-      <DependentUpon>202004182221013_MakeNewModelForTheSlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004191300197_AddedNewModelForAdvertising.cs" />
-    <Compile Include="Migrations\202004191300197_AddedNewModelForAdvertising.Designer.cs">
-      <DependentUpon>202004191300197_AddedNewModelForAdvertising.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004241200542_CreateNewModelWatchlist.cs" />
-    <Compile Include="Migrations\202004241200542_CreateNewModelWatchlist.Designer.cs">
-      <DependentUpon>202004241200542_CreateNewModelWatchlist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004241230324_UpdateModelWatchlist.cs" />
-    <Compile Include="Migrations\202004241230324_UpdateModelWatchlist.Designer.cs">
-      <DependentUpon>202004241230324_UpdateModelWatchlist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004242203057_AddComments.cs" />
-    <Compile Include="Migrations\202004242203057_AddComments.Designer.cs">
-      <DependentUpon>202004242203057_AddComments.cs</DependentUpon>
+    <Compile Include="Migrations\202004301254155_UpdateModelsArticleAndSimilarArticle.cs" />
+    <Compile Include="Migrations\202004301254155_UpdateModelsArticleAndSimilarArticle.Designer.cs">
+      <DependentUpon>202004301254155_UpdateModelsArticleAndSimilarArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddArticleViewModel.cs" />
     <Compile Include="Models\AddBook.cs" />
     <Compile Include="Models\AdminAuthor.cs" />
     <Compile Include="Models\AdminCategory.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticleImages.cs" />
+    <Compile Include="Models\ArticleTag.cs" />
     <Compile Include="Models\AsideViewModel.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Banner.cs" />
@@ -284,6 +242,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SimilarArticle.cs" />
     <Compile Include="Models\Slide.cs" />
     <Compile Include="Models\UpdateBook.cs" />
     <Compile Include="Models\Watchlist.cs" />
@@ -300,6 +259,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
     <Content Include="Content\css\external\idangerous.swiper.css" />
     <Content Include="Content\css\external\jquery.selectbox.css" />
     <Content Include="Content\css\external\magnific-popup.css" />
@@ -541,6 +503,8 @@
     <Content Include="Content\fonts\MuseoSans_500-webfont.woff" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
     <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
@@ -726,6 +690,10 @@
     <Content Include="Scripts\rs-plugin\font\revicons.ttf" />
     <Content Include="Scripts\rs-plugin\font\revicons.woff" />
     <Content Include="Views\Book\ReadBook.cshtml" />
+    <Content Include="Views\Admin\ShowArticles.cshtml" />
+    <Content Include="Views\Admin\AddArticle.cshtml" />
+    <Content Include="Views\Article\Articles.cshtml" />
+    <Content Include="Views\Article\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -753,50 +721,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004072223405_InitialCreate.resx">
-      <DependentUpon>202004072223405_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004292226565_Initial.resx">
+      <DependentUpon>202004292226565_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004072230359_FirstMigration.resx">
-      <DependentUpon>202004072230359_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004300103041_AddModelSimilarArticle.resx">
+      <DependentUpon>202004300103041_AddModelSimilarArticle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004072237155_AddFieldSlug.resx">
-      <DependentUpon>202004072237155_AddFieldSlug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101329256_AddTableAuthor.resx">
-      <DependentUpon>202004101329256_AddTableAuthor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101357189_AddTableCountry.resx">
-      <DependentUpon>202004101357189_AddTableCountry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101415412_UpdateTableBook.resx">
-      <DependentUpon>202004101415412_UpdateTableBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101452274_AddedTableFields.resx">
-      <DependentUpon>202004101452274_AddedTableFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004102227199_AddedFieldTodayBestChoiceInCategory.resx">
-      <DependentUpon>202004102227199_AddedFieldTodayBestChoiceInCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004111215270_AddedFieldImageForBook.resx">
-      <DependentUpon>202004111215270_AddedFieldImageForBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004111547169_AddedFieldNumberPagesForBook.resx">
-      <DependentUpon>202004111547169_AddedFieldNumberPagesForBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004182221013_MakeNewModelForTheSlider.resx">
-      <DependentUpon>202004182221013_MakeNewModelForTheSlider.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004191300197_AddedNewModelForAdvertising.resx">
-      <DependentUpon>202004191300197_AddedNewModelForAdvertising.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004241200542_CreateNewModelWatchlist.resx">
-      <DependentUpon>202004241200542_CreateNewModelWatchlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004241230324_UpdateModelWatchlist.resx">
-      <DependentUpon>202004241230324_UpdateModelWatchlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004242203057_AddComments.resx">
-      <DependentUpon>202004242203057_AddComments.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004301254155_UpdateModelsArticleAndSimilarArticle.resx">
+      <DependentUpon>202004301254155_UpdateModelsArticleAndSimilarArticle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

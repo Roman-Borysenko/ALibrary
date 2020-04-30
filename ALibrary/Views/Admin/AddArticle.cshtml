@@ -1,0 +1,54 @@
+﻿@model ALibrary.Models.AddArticleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавить статью</h2>
+@using (Html.BeginForm("AddArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="form-group">
+                @Html.LabelFor(b => b.Title, "Название статьи")
+                @Html.TextBoxFor(b => b.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Title, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Description, "Краткое содержание статьи")
+                @Html.TextBoxFor(b => b.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Text, "Текст статьи")
+                @Html.TextAreaFor(b => b.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Text, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.SimilarArticles, "Похожие статьи")
+                @Html.DropDownListFor(b => b.SimilarArticles, ViewBag.Articles as SelectList, new { @class = "form-control chosen-select", @multiple = "true" })
+                @Html.ValidationMessageFor(b => b.SimilarArticles, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.ArticleTags, "Теги")
+                @Html.DropDownListFor(b => b.ArticleTags, ViewBag.Tags as SelectList, new { @class = "form-control chosen-select", @multiple = "true" })
+                @Html.ValidationMessageFor(b => b.ArticleTags, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <div class="form-group images">
+                @Html.LabelFor(b => b.Images, "Изображение")
+                @Html.TextBoxFor(b => b.Images, new { @type = "file", @class = "form-control", @id = "file", @style="margin-bottom: 10px;" })
+                @Html.ValidationMessageFor(b => b.Images, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}

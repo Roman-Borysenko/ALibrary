@@ -17,5 +17,9 @@ namespace ALibrary.Models
         public DbSet<Banner> Advertising { get; set; }
         public DbSet<Watchlist> Watchlists { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleImages> ArticleImages { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; }
+        public DbSet<SimilarArticle> SimilarArticles { get; set; }
     }
 }

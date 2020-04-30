@@ -141,9 +141,37 @@ namespace ALibrary
 
             #endregion
 
+            #region Article
+
+            routes.MapRoute(
+                name: "ShowArticles",
+                url: "admin/articles",
+                defaults: new { controller = "Admin", action = "ShowArticles" }
+            );
+
+            routes.MapRoute(
+                name: "AddArticle",
+                url: "admin/article/add",
+                defaults: new { controller = "Admin", action = "AddArticle" }
+            );
+
+            #endregion
+
             #endregion
 
             #region Routes Site
+
+            routes.MapRoute(
+                name: "Articles",
+                url: "articles",
+                defaults: new { controller = "Article", action = "Articles" }
+            );
+
+            routes.MapRoute(
+                name: "Article",
+                url: "article/{slug}",
+                defaults: new { controller = "Article", action = "Article" }
+            );
 
             routes.MapRoute(
                 name: "Watchlist",
