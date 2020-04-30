@@ -32,19 +32,21 @@
         }
 
         <div class="category category--light categoty--position marginb-sm">
-            <h3 class="category__title">browse<br><span class="title-edition">by section</span></h3>
+            <h3 class="category__title">Популярные<br><span class="title-edition">статьи</span></h3>
             <ul>
-                <li><a href="#" class="category__item">Showtimes &amp; Tickets (12345)</a></li>
-                <li><a href="#" class="category__item">Latest Trailers (3153)</a></li>
-                <li><a href="#" class="category__item">Coming Soon (3153)</a></li>
-                <li><a href="#" class="category__item">In Theaters (31)</a></li>
-                <li><a href="#" class="category__item">Release Calendar (314)</a></li>
+                @foreach (var article in Model.Articles)
+                {
+                    <li><a href="@Url.RouteUrl("Article", new { slug = article.Slug })" class="category__item">@article.Title</a></li>
+                }
             </ul>
         </div>
 
         <h3 class="heading-special lower--hight">Теги</h3>
         <ul class="tags tags--dark">
-            <li class="item-wrap"><a href="#" class="tags__item">lorem ipsum </a></li>
+            @foreach (var tag in Model.Tags)
+            {
+                <li class="item-wrap"><a href="@Url.RouteUrl("TagArticles", new { tag = tag.Slug })" class="tag_item">@tag.Name </a></li>
+            }
         </ul>
 
     </div>

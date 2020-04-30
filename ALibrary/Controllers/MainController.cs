@@ -23,6 +23,8 @@ namespace ALibrary.Controllers
             {
                 asideViewModel.Advertising = context.Advertising.Where(a => a.Place == true).OrderByDescending(a => a.Create).Take(3).ToList();
                 asideViewModel.Books = context.Books.Include("Categories").OrderByDescending(b => b.View).ThenByDescending(b => b.Create).Take(8).ToList();
+                asideViewModel.Tags = context.ArticleTags.ToList();
+                asideViewModel.Articles = context.Articles.OrderByDescending(a => a.View).Take(5).ToList();
             }
             return PartialView(asideViewModel);
         }

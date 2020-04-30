@@ -13,6 +13,7 @@ namespace ALibrary.Models
         public DateTime Create { get; set; }
         public string Description { get; set; }
         public string Text { get; set; }
+        public int View { get; set; }
         public List<ArticleImages> ArticleImages { get; set; }
         public List<ArticleTag> ArticleTags { get; set; }
         public List<SimilarArticle> SimilarArticles { get; set; }

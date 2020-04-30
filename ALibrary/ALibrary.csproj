@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202004301254155_UpdateModelsArticleAndSimilarArticle.Designer.cs">
       <DependentUpon>202004301254155_UpdateModelsArticleAndSimilarArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004302147222_AddedFieldViewForArticle.cs" />
+    <Compile Include="Migrations\202004302147222_AddedFieldViewForArticle.Designer.cs">
+      <DependentUpon>202004302147222_AddedFieldViewForArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddArticleViewModel.cs" />
@@ -730,6 +734,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004301254155_UpdateModelsArticleAndSimilarArticle.resx">
       <DependentUpon>202004301254155_UpdateModelsArticleAndSimilarArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004302147222_AddedFieldViewForArticle.resx">
+      <DependentUpon>202004302147222_AddedFieldViewForArticle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

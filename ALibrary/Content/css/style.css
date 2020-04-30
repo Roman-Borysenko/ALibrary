@@ -10038,3 +10038,15 @@ a.login:hover {
     min-height: 800px;
     margin-top: 20px;
 }
+
+.tags--dark .tag_item {
+    display: inline-block;
+    background-color: #4c4145;
+    color: #e5e5da;
+    padding: 1px 9px 3px;
+    margin-right: -2px;
+    margin-bottom: -1px;
+    font-size: 11px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
