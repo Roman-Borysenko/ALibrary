@@ -228,6 +228,7 @@
     <Compile Include="Models\AdminCategory.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleImages.cs" />
+    <Compile Include="Models\ArticlesViewModel.cs" />
     <Compile Include="Models\ArticleTag.cs" />
     <Compile Include="Models\AsideViewModel.cs" />
     <Compile Include="Models\Author.cs" />

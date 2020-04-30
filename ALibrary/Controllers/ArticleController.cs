@@ -1,4 +1,5 @@
-﻿using ALibrary.Models;
+﻿using ALibrary.Helpers;
+using ALibrary.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,38 @@ namespace ALibrary.Controllers
 {
     public class ArticleController : Controller
     {
-        private const int pageSize = 3;
+        private const int pageSize = 1;
         public ActionResult Articles(int? page)
         {
             var pageNumber = (page ?? 1);
+            var articlesViewModel = new ArticlesViewModel();
             using (var context = new DataContext())
             {
-                var articles = context.Articles.Include("ArticleImages").Include("ArticleTags").ToList().ToPagedList(pageNumber, pageSize);
-                return View(articles);
+                articlesViewModel.Articles = context.Articles.Include("ArticleImages").Include("ArticleTags").OrderByDescending(a => a.Create).ToList().ToPagedList(pageNumber, pageSize);
             }
+
+            articlesViewModel.Title = "Статьи";
+            articlesViewModel.PageType = PageType.Articles;
+
+            return View(articlesViewModel);
         }
         public ActionResult Article(string slug)
         {
             return View();
+        }
+        public ActionResult TagArticles(string tag, int? page)
+        {
+            var pageNumber = (page ?? 1);
+            var articlesViewModel = new ArticlesViewModel();
+            using (var context = new DataContext())
+            {
+                articlesViewModel.Articles = context.Articles.Include("ArticleImages").Include("ArticleTags").Where(a => a.ArticleTags.Any(t => t.Slug == tag)).OrderByDescending(a => a.Create).ToList().ToPagedList(pageNumber, pageSize);
+                articlesViewModel.Title = "Статьи по тегу: " + context.ArticleTags.FirstOrDefault(t => t.Slug == tag).Name;
+            }
+
+            articlesViewModel.PageType = PageType.ArticlesTag;
+
+            return View("Articles", articlesViewModel);
         }
     }
 }

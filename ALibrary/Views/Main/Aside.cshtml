@@ -4,14 +4,11 @@
 <aside class="col-sm-4 col-md-3">
     <div class="sitebar">
 
-        @if (Model.Advertising != null && Model.Advertising.Count > 0)
+        @if (Model.Advertising[0] != null)
         {
-            foreach (var banner in Model.Advertising)
-            {
-                <div class="banner-wrap">
-                    <img alt='@banner.Text' src="@Url.Content($"~/Content/images/banners/{banner.Image}")">
-                </div>
-            }
+            <div class="banner-wrap">
+                <img alt='@Model.Advertising[0].Text' src="@Url.Content($"~/Content/images/banners/{Model.Advertising[0].Image}")">
+            </div>
         }
 
         @if (Model.Books != null && Model.Books.Count > 0)
@@ -26,5 +23,29 @@
                 </ol>
             </div>
         }
+
+        @if (Model.Advertising[1] != null)
+        {
+            <div class="banner-wrap">
+                <img alt='@Model.Advertising[1].Text' src="@Url.Content($"~/Content/images/banners/{Model.Advertising[1].Image}")">
+            </div>
+        }
+
+        <div class="category category--light categoty--position marginb-sm">
+            <h3 class="category__title">browse<br><span class="title-edition">by section</span></h3>
+            <ul>
+                <li><a href="#" class="category__item">Showtimes &amp; Tickets (12345)</a></li>
+                <li><a href="#" class="category__item">Latest Trailers (3153)</a></li>
+                <li><a href="#" class="category__item">Coming Soon (3153)</a></li>
+                <li><a href="#" class="category__item">In Theaters (31)</a></li>
+                <li><a href="#" class="category__item">Release Calendar (314)</a></li>
+            </ul>
+        </div>
+
+        <h3 class="heading-special lower--hight">Теги</h3>
+        <ul class="tags tags--dark">
+            <li class="item-wrap"><a href="#" class="tags__item">lorem ipsum </a></li>
+        </ul>
+
     </div>
 </aside>

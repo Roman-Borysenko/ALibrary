@@ -8,7 +8,7 @@ namespace ALibrary.Models
 {
     public class AddArticleViewModel
     {
-        [Required, StringLength(30, MinimumLength = 2)]
+        [Required, StringLength(120, MinimumLength = 2)]
         public string Title { get; set; }
         [Required]
         public DateTime Create { get; set; }
