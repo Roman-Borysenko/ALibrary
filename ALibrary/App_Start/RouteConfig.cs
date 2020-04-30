@@ -174,6 +174,12 @@ namespace ALibrary
             );
 
             routes.MapRoute(
+                name: "ArticlesPage",
+                url: "articles/page/{page}",
+                defaults: new { controller = "Article", action = "Articles" }
+            );
+
+            routes.MapRoute(
                 name: "Watchlist",
                 url: "watchlist",
                 defaults: new { controller = "Book", action = "Watchlist" }

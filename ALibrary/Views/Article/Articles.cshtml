@@ -1,11 +1,12 @@
-﻿@model List<ALibrary.Models.Article>
+﻿@model PagedList.IPagedList<ALibrary.Models.Article>
+@using PagedList.Mvc;
 
 <!-- Main content -->
 <section class="container">
     <div class="overflow-wrapper">
         <div class="col-sm-8 col-md-9">
 
-            <h2 class="page-heading">News</h2>
+            <h2 class="page-heading">Статьи</h2>
 
             @foreach (var article in Model)
             {
@@ -40,8 +41,7 @@
             }
 
             <div class="pagination">
-                <a href='#' class="pagination__prev">prev</a>
-                <a href='#' class="pagination__next">next</a>
+                @Html.PagedListPager(Model, page => @Url.RouteUrl("ArticlesPage", new { page }))
             </div>
 
         </div>
