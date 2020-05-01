@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202004302147222_AddedFieldViewForArticle.Designer.cs">
       <DependentUpon>202004302147222_AddedFieldViewForArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005011901462_AddedFieldArticleForModelComment.cs" />
+    <Compile Include="Migrations\202005011901462_AddedFieldArticleForModelComment.Designer.cs">
+      <DependentUpon>202005011901462_AddedFieldArticleForModelComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddArticleViewModel.cs" />
@@ -261,6 +265,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-ALibrary-20200407070238.mdf" />
+    <Content Include="App_Data\aspnet-ALibrary-20200407070238_log.ldf">
+      <DependentUpon>aspnet-ALibrary-20200407070238.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -282,127 +290,6 @@
     <Content Include="Content\fonts\aleo-italic.svg" />
     <Content Include="Content\fonts\aleo-regular.svg" />
     <Content Include="Content\fonts\MuseoSans_500-webfont.svg" />
-    <Content Include="Content\images\ajax-loader.GIF" />
-    <Content Include="Content\images\apple-store.svg" />
-    <Content Include="Content\images\banners\2-01-.jpg" />
-    <Content Include="Content\images\banners\9780203797501.jpg" />
-    <Content Include="Content\images\banners\abstract-vectors-with-hexagon-backgrounds-for-presentations-banners-brochures-book-pages-and-more-2A7HCXE.jpg" />
-    <Content Include="Content\images\banners\b.jpg" />
-    <Content Include="Content\images\banners\back-to-school-card-template-banners-set-bus-kids-chalkboards-book-education-equipment-vector-illustration-131092175.jpg" />
-    <Content Include="Content\images\banners\book-cover-338.jpg" />
-    <Content Include="Content\images\banners\d90edebe4a203bf2414f78fa3a1c8ef9.jpg" />
-    <Content Include="Content\images\banners\The-Morgan-Young-Series-FB-Banner.jpg" />
-    <Content Include="Content\images\banners\Together-We-Fall-Series-FB-Banner.jpg" />
-    <Content Include="Content\images\banners\top-banner.jpg" />
-    <Content Include="Content\images\bg-image.jpg" />
-    <Content Include="Content\images\bg-video.jpg" />
-    <Content Include="Content\images\blanck.png" />
-    <Content Include="Content\images\book\0277d18331341c5c6aa60e5074a18886.jpg" />
-    <Content Include="Content\images\book\0fda8aee-3_puz-lee-saw-that.jpg" />
-    <Content Include="Content\images\book\14196845_4.jpg" />
-    <Content Include="Content\images\book\2_318_40.jpg" />
-    <Content Include="Content\images\book\47296_74752.jpg" />
-    <Content Include="Content\images\book\53466_98138.jpg" />
-    <Content Include="Content\images\book\5fa0bab0-2_puz-lee-saw-that.jpg" />
-    <Content Include="Content\images\book\64b79bd0-3_Screenshot_3.png" />
-    <Content Include="Content\images\book\6bcd495b-d_f1.jpg" />
-    <Content Include="Content\images\book\9780198320852_1.jpg" />
-    <Content Include="Content\images\book\c919f363a34d130371975d56f62df1f5.jpg" />
-    <Content Include="Content\images\book\fa704e75-3_knVxGW1.jpg" />
-    <Content Include="Content\images\book\fbda5f6a-a_knVxGW1.jpg" />
-    <Content Include="Content\images\book\img569_3_37.jpg" />
-    <Content Include="Content\images\book\img585_2_27.jpg" />
-    <Content Include="Content\images\book\img641_28.jpg" />
-    <Content Include="Content\images\close-open-menu-icon.png" />
-    <Content Include="Content\images\components\arrow.svg" />
-    <Content Include="Content\images\components\bg-movie.png" />
-    <Content Include="Content\images\components\bg-time-hover.png" />
-    <Content Include="Content\images\components\bg-time.png" />
-    <Content Include="Content\images\components\bg-tooltip.png" />
-    <Content Include="Content\images\components\checked.png" />
-    <Content Include="Content\images\components\close.svg" />
-    <Content Include="Content\images\components\corner-lb.png" />
-    <Content Include="Content\images\components\corner-left.png" />
-    <Content Include="Content\images\components\corner-lt.png" />
-    <Content Include="Content\images\components\corner-rb.png" />
-    <Content Include="Content\images\components\corner-right.png" />
-    <Content Include="Content\images\components\corner-rt.png" />
-    <Content Include="Content\images\components\cursor.png" />
-    <Content Include="Content\images\components\line-marker.png" />
-    <Content Include="Content\images\components\plus-minus-icon.png" />
-    <Content Include="Content\images\components\price-pattern.jpg" />
-    <Content Include="Content\images\components\scarf.png" />
-    <Content Include="Content\images\components\sits_mobile.png" />
-    <Content Include="Content\images\components\wave-danger.svg" />
-    <Content Include="Content\images\components\wave-dark-sm.svg" />
-    <Content Include="Content\images\components\wave-dark.svg" />
-    <Content Include="Content\images\components\wave-hover.svg" />
-    <Content Include="Content\images\components\wave-light-sm.svg" />
-    <Content Include="Content\images\components\wave-light.svg" />
-    <Content Include="Content\images\components\wave-main.svg" />
-    <Content Include="Content\images\components\wave.svg" />
-    <Content Include="Content\images\error.png" />
-    <Content Include="Content\images\google-play.svg" />
-    <Content Include="Content\images\icons\actors.svg" />
-    <Content Include="Content\images\icons\camera.svg" />
-    <Content Include="Content\images\icons\comment.svg" />
-    <Content Include="Content\images\icons\countrr.svg" />
-    <Content Include="Content\images\icons\country.svg" />
-    <Content Include="Content\images\icons\director.svg" />
-    <Content Include="Content\images\icons\fave-hover.svg" />
-    <Content Include="Content\images\icons\fave.svg" />
-    <Content Include="Content\images\icons\film.svg" />
-    <Content Include="Content\images\icons\fiml.svg" />
-    <Content Include="Content\images\icons\gift-dark.svg" />
-    <Content Include="Content\images\icons\gift-light.svg" />
-    <Content Include="Content\images\icons\heart.svg" />
-    <Content Include="Content\images\icons\left-arrow-danger.svg" />
-    <Content Include="Content\images\icons\left-arrow-dark.svg" />
-    <Content Include="Content\images\icons\left-arrow.svg" />
-    <Content Include="Content\images\icons\location.svg" />
-    <Content Include="Content\images\icons\mause.svg" />
-    <Content Include="Content\images\icons\reply-hover.svg" />
-    <Content Include="Content\images\icons\reply.svg" />
-    <Content Include="Content\images\icons\retweet-hover.svg" />
-    <Content Include="Content\images\icons\retweet.svg" />
-    <Content Include="Content\images\icons\right-arrow-danger.svg" />
-    <Content Include="Content\images\icons\right-arrow-dark.svg" />
-    <Content Include="Content\images\icons\right-arrow.svg" />
-    <Content Include="Content\images\icons\sm-left-arrow-hover.svg" />
-    <Content Include="Content\images\icons\sm-left-arrow.svg" />
-    <Content Include="Content\images\icons\sm-right-arrow-hover.svg" />
-    <Content Include="Content\images\icons\sm-right-arrow.svg" />
-    <Content Include="Content\images\icons\smile-dark.svg" />
-    <Content Include="Content\images\icons\smile-light.svg" />
-    <Content Include="Content\images\icons\snow-dark.svg" />
-    <Content Include="Content\images\icons\snow-light.svg" />
-    <Content Include="Content\images\icons\speech.svg" />
-    <Content Include="Content\images\icons\stars-light.svg" />
-    <Content Include="Content\images\icons\stars.svg" />
-    <Content Include="Content\images\icons\stroke.svg" />
-    <Content Include="Content\images\icons\users-dark.svg" />
-    <Content Include="Content\images\icons\users-light.svg" />
-    <Content Include="Content\images\icons\wizard-dark.svg" />
-    <Content Include="Content\images\icons\wizard-light.svg" />
-    <Content Include="Content\images\logo-dark.png" />
-    <Content Include="Content\images\logo-lg.png" />
-    <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\payment\pay1.png" />
-    <Content Include="Content\images\payment\pay2.png" />
-    <Content Include="Content\images\payment\pay3.png" />
-    <Content Include="Content\images\payment\pay4.png" />
-    <Content Include="Content\images\payment\pay5.png" />
-    <Content Include="Content\images\payment\pay6.png" />
-    <Content Include="Content\images\payment\pay7.png" />
-    <Content Include="Content\images\rate\cancel-off.png" />
-    <Content Include="Content\images\rate\cancel-on.png" />
-    <Content Include="Content\images\rate\star-half.png" />
-    <Content Include="Content\images\rate\star-off.png" />
-    <Content Include="Content\images\rate\star-off.svg" />
-    <Content Include="Content\images\rate\star-on.png" />
-    <Content Include="Content\images\rate\star-on.svg" />
-    <Content Include="Content\images\tickets.png" />
-    <Content Include="Content\images\windows-store.svg" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\PagedList.css" />
@@ -507,6 +394,7 @@
     <Content Include="Content\fonts\MuseoSans_500-webfont.eot" />
     <Content Include="Content\fonts\MuseoSans_500-webfont.ttf" />
     <Content Include="Content\fonts\MuseoSans_500-webfont.woff" />
+    <None Include="Properties\PublishProfiles\ALibrary-books - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
@@ -830,18 +718,7 @@
     <Content Include="Scripts\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Content\books\" />
-    <Folder Include="Content\images\cinema\" />
-    <Folder Include="Content\images\client-photo\" />
-    <Folder Include="Content\images\comment\" />
-    <Folder Include="Content\images\gallery\large\" />
-    <Folder Include="Content\images\gallery\thumb\" />
-    <Folder Include="Content\images\new\" />
-    <Folder Include="Content\images\slides\" />
-    <Folder Include="Content\images\trailers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -867,6 +744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004302147222_AddedFieldViewForArticle.resx">
       <DependentUpon>202004302147222_AddedFieldViewForArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005011901462_AddedFieldArticleForModelComment.resx">
+      <DependentUpon>202005011901462_AddedFieldArticleForModelComment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -32,6 +32,12 @@ namespace ALibrary.Controllers
             using (var context = new DataContext())
             {
                 var book = context.Books.Include("Categories").Include("Author").Include("Author.Country").FirstOrDefault(b => b.Id == id && b.Slug == slug);
+
+                if (book == null)
+                {
+                    return HttpNotFound();
+                }
+
                 return View(book);
             }
         }

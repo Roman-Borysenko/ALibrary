@@ -105,27 +105,24 @@
 
                     @if (Model.Book.Comments.Count != 0)
                     {
-                <div class="comment-sets">
+                        <div class="comment-sets">
 
-                    @foreach (var comment in Model.Book.Comments)
-                    {
-                        <div class="comment">
-                            <div class="comment__images">
-                                <img alt='' src="http://placehold.it/50x50">
-                            </div>
+                            @foreach (var comment in Model.Book.Comments)
+                            {
+                                <div class="comment">
+                                    <div class="comment__images">
+                                        <img alt='' src="http://placehold.it/50x50">
+                                    </div>
 
-                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>@comment.GetUser.UserName</a>
-                            <p class="comment__date">@comment.Create.ToString("dd.MM.yyyy | hh:mm")</p>
-                            <p class="comment__message">@comment.Text</p>
-                            @*<a href='#' class="comment__reply">Reply</a>*@
+                                    <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>@comment.GetUser.UserName</a>
+                                    <p class="comment__date">@comment.Create.ToString("dd.MM.yyyy | hh:mm")</p>
+                                    <p class="comment__message">@comment.Text</p>
+                                    @*<a href='#' class="comment__reply">Reply</a>*@
+                                </div>
+                            }
+
                         </div>
-                    }
-
-                </div>
-                    } else
-                    {
-                        <h3>Нет комментариев!</h3>
-                    }
+                    } 
                 </div>
             </div>
         </div>

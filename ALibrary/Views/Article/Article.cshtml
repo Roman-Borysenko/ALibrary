@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <h2 class="page-heading">Similar posts</h2>
+            <h2 class="page-heading">Похожие статьи</h2>
 
             @foreach (var article in Model.SimilarArticles)
             {
@@ -78,90 +78,44 @@
             }
 
             <div class="clearfix"></div>
-            <h2 class="page-heading">comments (15)</h2>
+            <h2 class="page-heading">Комментарии (@Model.Article.Comments.Count)</h2>
 
             <div class="comment-wrapper">
-                <form id="comment-form" class="comment-form" method='post'>
-                    <textarea class="comment-form__text" placeholder='Add you comment here'></textarea>
-                    <label class="comment-form__info">250 characters left</label>
-                    <button type='submit' class="btn btn-md btn--danger comment-form__btn">add comment</button>
-                </form>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("AddComment", "Article", FormMethod.Post, new { @class = "comment-form" }))
+                    {
+                        <input name="article" type="hidden" value="@Model.Article.Id" />
+                        <textarea class="comment-form__text" name="text" placeholder='Ваш комментарий...'></textarea>
+                        <label class="comment-form__info">250 characters left</label>
+                        <button type='submit' class="btn btn-md btn--danger comment-form__btn">Добавить комментарий</button>
+                    }
+                }
+                else
+                {
+                    <p>Для того чтобы оставить комментарий нужно <a href="@Url.Action("Login", "Account")">авторизоваться</a>!</p>
+                }
 
-                <div class="comment-sets">
+                @if (Model.Article.Comments.Count != 0)
+                {
+                    <div class="comment-sets">
 
-                    <div class="comment">
-                        <div class="comment__images">
-                            <img alt='' src="http://placehold.it/50x50">
-                        </div>
+                        @foreach (var comment in Model.Article.Comments)
+                        {
+                            <div class="comment">
+                                <div class="comment__images">
+                                    <img alt='' src="http://placehold.it/50x50">
+                                </div>
 
-                        <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
-                        <p class="comment__date">today | 03:04</p>
-                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                        <a href='#' class="comment__reply">Reply</a>
-                    </div>
-
-                    <div class="comment">
-                        <div class="comment__images">
-                            <img alt='' src="http://placehold.it/50x50">
-                        </div>
-
-                        <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
-                        <p class="comment__date">22.10.2013 | 14:40</p>
-                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                        <a href='#' class="comment__reply">Reply</a>
-                    </div>
-
-                    <div class="comment comment--answer">
-                        <div class="comment__images">
-                            <img alt='' src="http://placehold.it/50x50">
-                        </div>
-
-                        <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Dmitriy Pustovalov</a>
-                        <p class="comment__date">today | 10:19</p>
-                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                        <a href='#' class="comment__reply">Reply</a>
-                    </div>
-
-                    <div class="comment comment--last">
-                        <div class="comment__images">
-                            <img alt='' src="http://placehold.it/50x50">
-                        </div>
-
-                        <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Sia Andrews</a>
-                        <p class="comment__date"> 22.10.2013 | 12:31 </p>
-                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                        <a href='#' class="comment__reply">Reply</a>
-                    </div>
-
-                    <div id='hide-comments' class="hide-comments">
-                        <div class="comment">
-                            <div class="comment__images">
-                                <img alt='' src="http://placehold.it/50x50">
+                                <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>@comment.GetUser.UserName</a>
+                                <p class="comment__date">@comment.Create.ToString("dd.MM.yyyy | hh:mm")</p>
+                                <p class="comment__message">@comment.Text</p>
+                                @*<a href='#' class="comment__reply">Reply</a>*@
                             </div>
+                        }
 
-                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
-                            <p class="comment__date">today | 03:04</p>
-                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                            <a href='#' class="comment__reply">Reply</a>
-                        </div>
-
-                        <div class="comment">
-                            <div class="comment__images">
-                                <img alt='' src="http://placehold.it/50x50">
-                            </div>
-
-                            <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
-                            <p class="comment__date">22.10.2013 | 14:40</p>
-                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
-                            <a href='#' class="comment__reply">Reply</a>
-                        </div>
                     </div>
-
-                    <div class="comment-more">
-                        <a href="#" class="watchlist">Show more comments</a>
-                    </div>
-
-                </div>
+                }
             </div>
         </div>
 

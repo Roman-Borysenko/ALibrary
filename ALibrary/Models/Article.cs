@@ -17,5 +17,6 @@ namespace ALibrary.Models
         public List<ArticleImages> ArticleImages { get; set; }
         public List<ArticleTag> ArticleTags { get; set; }
         public List<SimilarArticle> SimilarArticles { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="clearfix"></div>
-                        <p class="copy">&copy; A.Movie, 2013. All rights reserved. Done by Olia Gozha</p>
+                        <p class="copy">&copy; Made B.R.</p>
                     </div>
                 </div>
             </section>
@@ -161,7 +161,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            init_SinglePage();
+            @if (ViewBag.Article == true)
+            {
+                Write("init_SinglePage();");
+            }
             init_MovieList();
         });
     </script>

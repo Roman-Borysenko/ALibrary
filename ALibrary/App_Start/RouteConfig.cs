@@ -174,6 +174,12 @@ namespace ALibrary
             );
 
             routes.MapRoute(
+                name: "AddCommentForArticle",
+                url: "article/comment/add",
+                defaults: new { controller = "Article", action = "AddComment" }
+            );
+
+            routes.MapRoute(
                 name: "TagArticles",
                 url: "articles/tag/{tag}",
                 defaults: new { controller = "Article", action = "TagArticles" }
