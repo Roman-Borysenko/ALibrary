@@ -1,6 +1,7 @@
 ﻿using ALibrary.Helpers;
 using ALibrary.Models;
 using PagedList;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -29,7 +30,9 @@ namespace ALibrary.Controllers
 
             using (var context = new DataContext())
             {
-                articleViewModel.Article = context.Articles.Include("ArticleImages").Include("ArticleTags").FirstOrDefault(a => a.Slug == slug);
+                articleViewModel.Article = context.Articles.Include("ArticleImages").Include("ArticleTags").Include("SimilarArticles").FirstOrDefault(a => a.Slug == slug);
+                var similarArticlesId = articleViewModel.Article.SimilarArticles.Select(s => s.SimilarArticleId);
+                articleViewModel.SimilarArticles = context.Articles.Include("ArticleImages").Include("SimilarArticles").Where(a => similarArticlesId.Any(s => s == a.Id)).OrderByDescending(a => a.Create).Take(3).ToList();
             }
 
             return View(articleViewModel);

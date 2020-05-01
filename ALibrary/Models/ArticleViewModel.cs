@@ -8,5 +8,6 @@ namespace ALibrary.Models
     public class ArticleViewModel
     {
         public Article Article { get; set; }
+        public List<Article> SimilarArticles { get; set; }
     }
 }
