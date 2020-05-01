@@ -10042,11 +10042,21 @@ a.login:hover {
 .tags--dark .tag_item {
     display: inline-block;
     background-color: #4c4145;
-    color: #e5e5da;
-    padding: 1px 9px 3px;
+    color: #e5e5da !important;
+    padding: 4px 9px 3px;
     margin-right: -2px;
-    margin-bottom: -1px;
+    margin-bottom: 2px;
     font-size: 11px;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+}
+.tags--dark .tag_item:hover {
+    background-color: #fe505a;
+    color: #ffffff;
+}
+.tags .tag_item {
+    display: inline-block;
+    color: #969b9f;
+    font-size: 12px;
+    padding-right: 16px;
 }

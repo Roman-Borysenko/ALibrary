@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ALibrary.Models
 {
@@ -14,7 +15,7 @@ namespace ALibrary.Models
         public DateTime Create { get; set; }
         [Required, StringLength(120, MinimumLength = 10)]
         public string Description { get; set; }
-        [Required, MinLength(30)]
+        [Required, MinLength(30), AllowHtml]
         public string Text { get; set; }
         [Required, ListFileForrmat(".jpg|.jpeg|.png")]
         public IEnumerable<HttpPostedFileBase> Images { get; set; }

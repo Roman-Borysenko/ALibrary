@@ -19,6 +19,8 @@
     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
     <!-- Stylesheets -->
+    <!-- Swiper slider -->
+    <link href="@Url.Content("~/Content/css/external/idangerous.swiper.css")" rel="stylesheet" />
     <!-- Mobile menu -->
     <link href="@Url.Content("~/Content/css/gozha-nav.css")" rel="stylesheet" )" />
     <!-- Select -->
@@ -138,6 +140,8 @@
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- Bootstrap 3-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <!-- Swiper slider -->
+    <script src="@Url.Content("~/Scripts/js/external/idangerous.swiper.min.js")"></script>
 
     <!-- Mobile menu -->
     <script src="@Url.Content("~/Scripts/js/jquery.mobile.menu.js")"></script>
@@ -157,6 +161,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            init_SinglePage();
             init_MovieList();
         });
     </script>

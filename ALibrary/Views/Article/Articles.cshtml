@@ -30,7 +30,7 @@
                             <ul>
                                 @foreach (var tag in article.ArticleTags)
                                 {
-                                    <li class="item-wrap"><a href="@Url.RouteUrl("TagArticles", new { tag = tag.Slug })" class="">@tag.Name</a></li>
+                                    <li class="item-wrap"><a href="@Url.RouteUrl("TagArticles", new { tag = tag.Slug })" class="tag_item">@tag.Name</a></li>
                                 }
                             </ul>
                         </div>

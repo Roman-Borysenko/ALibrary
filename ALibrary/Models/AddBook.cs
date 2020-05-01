@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ALibrary.Models
 {
@@ -15,7 +16,7 @@ namespace ALibrary.Models
         public int Year { get; set; }
         [Required, Range(50, 5000)]
         public int NumberPages { get; set; }
-        [Required]
+        [Required, AllowHtml]
         public string Description { get; set; }
         [Range(0, 5)]
         public int TodayBestChoice { get; set; }

@@ -1,1 +1,200 @@
-﻿<h1>Article</h1>
+﻿@model ALibrary.Models.ArticleViewModel
+
+<!-- Main content -->
+    <section class="container">
+        <div class="col-sm-8 col-md-9">
+
+            <div class="post">
+                <div class="post__preview">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach (var slide in Model.Article.ArticleImages)
+                            {
+                                <!--Slide-->
+                                <div class="swiper-slide" data-text='Slide'>
+                                    <img alt='' src="@Url.Content($"~/Content/images/articles/{slide.ImagePath}")">
+                                </div>
+                            }
+                        </div><!-- end swiper wrapper-->
+                    </div><!-- end swiper container -->
+
+                    @if (Model.Article.ArticleImages.Count > 1)
+                    {
+                        <a class="arrow-left no-hover" href="#"><span class="slider__info"></span></a>
+                        <a class="arrow-right" href="#"><span class="slider__info"></span></a>
+                    }
+
+                </div>
+
+                <h1>@Model.Article.Title</h1>
+                <p class="post__date">@Model.Article.Create.ToString("dd.MM.yyyy") </p>
+
+                <div class="wave-devider"></div>
+
+                @Html.Raw(Model.Article.Text)
+
+                <div class="info-wrapper">
+                    @if (Model.Article.ArticleTags != null && Model.Article.ArticleTags.Count > 0)
+                    {
+                        <div class="tags">
+                            <ul>
+                                @foreach (var tag in Model.Article.ArticleTags)
+                                {
+                                    <li class="item-wrap"><a href="@Url.RouteUrl("TagArticles", new { tag = tag.Slug })" class="tag_item">@tag.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @*<div class="share">
+                        <div class="addthis_toolbox addthis_default_style ">
+                            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                            <a class="addthis_button_tweet"></a>
+                            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+
+            <h2 class="page-heading">Similar posts</h2>
+
+            <div class="col-sm-4 col--remove">
+                <div class="post post--preview">
+                    <div class="post__image">
+                        <img alt='' src="http://placehold.it/270x330">
+                        <div class="social social--position social--hide">
+                            <span class="social__name">Share:</span>
+                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                            <a href='#' class="social__variant social--third fa fa-vk"></a>
+                        </div>
+                    </div>
+                    <p class="post__date">22 October 2013 </p>
+                    <a href="#" class="post__title">"Thor: The Dark World" - World Premiere</a>
+                    <a href="#" class="btn read-more post--btn">read more</a>
+                </div>
+            </div>
+            <div class="col-sm-4 col--remove">
+                <div class="post post--preview">
+                    <div class="post__image">
+                        <img alt='' src="http://placehold.it/270x330">
+                        <div class="social social--position social--hide">
+                            <span class="social__name">Share:</span>
+                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                            <a href='#' class="social__variant social--third fa fa-vk"></a>
+                        </div>
+                    </div>
+                    <p class="post__date">22 October 2013 </p>
+                    <a href="#" class="post__title">30th Annual Night Of Stars Presented By The Fashion ...</a>
+                    <a href="#" class="btn read-more post--btn">read more</a>
+                </div>
+            </div>
+            <div class="col-sm-4 col--remove">
+                <div class="post post--preview">
+                    <div class="post__image">
+                        <img alt='' src="http://placehold.it/270x330">
+                        <div class="social social--position social--hide">
+                            <span class="social__name">Share:</span>
+                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                            <a href='#' class="social__variant social--third fa fa-vk"></a>
+                        </div>
+                    </div>
+                    <p class="post__date">22 October 2013 </p>
+                    <a href="#" class="post__title">Hollywood Film Awards 2013</a>
+                    <a href="#" class="btn read-more post--btn">read more</a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <h2 class="page-heading">comments (15)</h2>
+
+            <div class="comment-wrapper">
+                <form id="comment-form" class="comment-form" method='post'>
+                    <textarea class="comment-form__text" placeholder='Add you comment here'></textarea>
+                    <label class="comment-form__info">250 characters left</label>
+                    <button type='submit' class="btn btn-md btn--danger comment-form__btn">add comment</button>
+                </form>
+
+                <div class="comment-sets">
+
+                    <div class="comment">
+                        <div class="comment__images">
+                            <img alt='' src="http://placehold.it/50x50">
+                        </div>
+
+                        <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
+                        <p class="comment__date">today | 03:04</p>
+                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                        <a href='#' class="comment__reply">Reply</a>
+                    </div>
+
+                    <div class="comment">
+                        <div class="comment__images">
+                            <img alt='' src="http://placehold.it/50x50">
+                        </div>
+
+                        <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
+                        <p class="comment__date">22.10.2013 | 14:40</p>
+                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                        <a href='#' class="comment__reply">Reply</a>
+                    </div>
+
+                    <div class="comment comment--answer">
+                        <div class="comment__images">
+                            <img alt='' src="http://placehold.it/50x50">
+                        </div>
+
+                        <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Dmitriy Pustovalov</a>
+                        <p class="comment__date">today | 10:19</p>
+                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                        <a href='#' class="comment__reply">Reply</a>
+                    </div>
+
+                    <div class="comment comment--last">
+                        <div class="comment__images">
+                            <img alt='' src="http://placehold.it/50x50">
+                        </div>
+
+                        <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Sia Andrews</a>
+                        <p class="comment__date"> 22.10.2013 | 12:31 </p>
+                        <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                        <a href='#' class="comment__reply">Reply</a>
+                    </div>
+
+                    <div id='hide-comments' class="hide-comments">
+                        <div class="comment">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>Roberta Inetti</a>
+                            <p class="comment__date">today | 03:04</p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment__images">
+                                <img alt='' src="http://placehold.it/50x50">
+                            </div>
+
+                            <a href='#' class="comment__author"><span class="social-used fa fa-vk"></span>Olia Gozha</a>
+                            <p class="comment__date">22.10.2013 | 14:40</p>
+                            <p class="comment__message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae enim sollicitudin, euismod erat id, fringilla lacus. Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra a, mattis in velit. Morbi molestie rhoncus enim, vitae sagittis dolor tristique et.</p>
+                            <a href='#' class="comment__reply">Reply</a>
+                        </div>
+                    </div>
+
+                    <div class="comment-more">
+                        <a href="#" class="watchlist">Show more comments</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        @{Html.RenderAction("Aside", "Main");}
+    </section>

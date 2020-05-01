@@ -1,17 +1,14 @@
 ﻿using ALibrary.Helpers;
 using ALibrary.Models;
 using PagedList;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ALibrary.Controllers
 {
     public class ArticleController : Controller
     {
-        private const int pageSize = 1;
+        private const int pageSize = 5;
         public ActionResult Articles(int? page)
         {
             var pageNumber = (page ?? 1);
@@ -28,7 +25,14 @@ namespace ALibrary.Controllers
         }
         public ActionResult Article(string slug)
         {
-            return View();
+            var articleViewModel = new ArticleViewModel();
+
+            using (var context = new DataContext())
+            {
+                articleViewModel.Article = context.Articles.Include("ArticleImages").Include("ArticleTags").FirstOrDefault(a => a.Slug == slug);
+            }
+
+            return View(articleViewModel);
         }
         public ActionResult TagArticles(string tag, int? page)
         {

@@ -11,6 +11,7 @@ namespace ALibrary
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/chosen.jquery.min.js",
+                        "~/Scripts/tinymce/tinymce.min.js",
                         "~/Scripts/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
