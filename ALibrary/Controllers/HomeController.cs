@@ -14,6 +14,7 @@ namespace ALibrary.Controllers
                 homeViewModel.TodayBestChoice = context.Books.Include("Categories").Where(b => b.TodayBestChoice != 0).OrderByDescending(b=>b.TodayBestChoice).ThenByDescending(b => b.Rating).Take(6).ToList();
                 homeViewModel.NewBooks = context.Books.Include("Categories").OrderByDescending(b => b.Create).Take(8).ToList();
                 homeViewModel.Slider = context.Slider.Take(5).OrderByDescending(s => s.Create).ToList();
+                homeViewModel.Articles = context.Articles.Include("ArticleImages").OrderByDescending(a => a.Create).Take(3).ToList();
             }
             return View(homeViewModel);
         }

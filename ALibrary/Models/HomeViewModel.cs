@@ -10,5 +10,6 @@ namespace ALibrary.Models
         public List<Book> TodayBestChoice { get; set; }
         public List<Book> NewBooks { get; set; }
         public List<Slide> Slider { get; set; }
+        public List<Article> Articles { get; set; }
     }
 }
