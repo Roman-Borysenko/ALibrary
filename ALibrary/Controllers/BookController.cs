@@ -38,9 +38,9 @@ namespace ALibrary.Controllers
                 var book = context.Books.Include("Categories").Include("Author").Include("Author.Country").FirstOrDefault(b => b.Id == id && b.Slug == slug);
 
                 if (book == null)
-                {
                     return HttpNotFound();
-                }
+                if ((User.Identity.IsAuthenticated != book.ForAuthorize && book.ForAuthorize != false))
+                    return HttpNotFound();
 
                 book.View += 1;
 

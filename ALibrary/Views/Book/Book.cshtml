@@ -52,7 +52,15 @@
                         <a href="#comments" class="comment-link">Комментарии:  @Model.Book.Comments.Count</a>
 
                         <div class="movie__btns">
-                            <a href="@Url.Action("ReadBook", "Book", new { id = Model.Book.Id, slug = Model.Book.Slug })" class="btn btn-md btn--warning">Читать</a>
+                            @if ((User.Identity.IsAuthenticated == @Model.Book.ForAuthorize) || !@Model.Book.ForAuthorize)
+                            {
+                                <a href="@Url.Action("ReadBook", "Book", new { id = Model.Book.Id, slug = Model.Book.Slug })" class="btn btn-md btn--warning">Читать</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-md btn--warning">Для авторизованных пользователей</a>
+                            }
+
                             @if (User.Identity.IsAuthenticated)
                             {
                                 using (Html.BeginForm("Watchlist", "Book", FormMethod.Post))

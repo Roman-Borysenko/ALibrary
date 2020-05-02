@@ -74,7 +74,8 @@ namespace ALibrary.Controllers
                     BookPath = bookPath,
                     Image = bookCover,
                     View = 0,
-                    Rating = 3,
+                    Rating = book.Rating,
+                    ForAuthorize = book.ForAuthorize,
                     TodayBestChoice = book.TodayBestChoice,
                     Create = DateTime.Now,
                     Categories = context.Categories.Where(c => c.Id == book.Category).ToList()
@@ -103,6 +104,8 @@ namespace ALibrary.Controllers
                     NumberPages = book.NumberPages,
                     Description = book.Description,
                     TodayBestChoice = book.TodayBestChoice,
+                    Rating = book.Rating,
+                    ForAuthorize = book.ForAuthorize,
                     AuthorId = book.Author.Id,
                     CategoryId = book.Categories.FirstOrDefault().Id,
                     ImageName = book.Image
@@ -147,7 +150,8 @@ namespace ALibrary.Controllers
                 updateBook.Author = context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
                 updateBook.Description = book.Description;
                 updateBook.View = 0;
-                updateBook.Rating = 3;
+                updateBook.Rating = book.Rating;
+                updateBook.ForAuthorize = book.ForAuthorize;
                 updateBook.TodayBestChoice = book.TodayBestChoice;
                 updateBook.Create = DateTime.Now;
                 updateBook.Categories = context.Categories.Where(c => c.Id == book.CategoryId).ToList();

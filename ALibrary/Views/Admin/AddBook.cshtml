@@ -39,6 +39,18 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(b => b.Rating, "Рейтинг книги")
+                @Html.TextBoxFor(b => b.Rating, new { @type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Rating, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.ForAuthorize, "Для авторизованных пользователей")
+                @Html.CheckBoxFor(b => b.ForAuthorize)
+                @Html.ValidationMessageFor(b => b.ForAuthorize, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(b => b.Author, "Автор книги")
                 @Html.DropDownListFor(b => b.Author, ViewBag.Author as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(b => b.Author, "", new { @class = "text-danger" })

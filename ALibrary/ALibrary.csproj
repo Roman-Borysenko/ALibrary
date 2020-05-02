@@ -228,6 +228,10 @@
     <Compile Include="Migrations\202005011901462_AddedFieldArticleForModelComment.Designer.cs">
       <DependentUpon>202005011901462_AddedFieldArticleForModelComment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005021431536_AddFieldForModelBook.cs" />
+    <Compile Include="Migrations\202005021431536_AddFieldForModelBook.Designer.cs">
+      <DependentUpon>202005021431536_AddFieldForModelBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddArticleViewModel.cs" />
@@ -747,6 +751,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005011901462_AddedFieldArticleForModelComment.resx">
       <DependentUpon>202005011901462_AddedFieldArticleForModelComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005021431536_AddFieldForModelBook.resx">
+      <DependentUpon>202005021431536_AddFieldForModelBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

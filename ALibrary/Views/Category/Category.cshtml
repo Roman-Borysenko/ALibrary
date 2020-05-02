@@ -44,7 +44,15 @@
                         <p class="movie__option"><strong>Автор: </strong><a>@book.Author.Name</a></p>
 
                         <div class="movie__btns">
-                            <a href="@Url.Action("ReadBook", "Book", new { id = book.Id, slug = book.Slug })" class="btn btn-md btn--warning">Читать</a>
+                            @if ((User.Identity.IsAuthenticated == @book.ForAuthorize) || !@book.ForAuthorize)
+                            {
+                                <a href="@Url.Action("ReadBook", "Book", new { id = book.Id, slug = book.Slug })" class="btn btn-md btn--warning">Читать</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-md btn--warning">Для авторизованных пользователей</a>
+                            }
+
                             @if (User.Identity.IsAuthenticated && Model.PageType != PageType.Watchlist)
                             {
                                 using (Html.BeginForm("Watchlist", "Book", FormMethod.Post))

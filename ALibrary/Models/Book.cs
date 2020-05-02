@@ -19,6 +19,7 @@ namespace ALibrary.Models
         public int View { get; set; }
         public int Rating { get; set; }
         public int TodayBestChoice { get; set; }
+        public bool ForAuthorize { get; set; }
         public DateTime Create { get; set; }
         public List<Category> Categories { get; set; }
         public List<Comment> Comments { get; set; }

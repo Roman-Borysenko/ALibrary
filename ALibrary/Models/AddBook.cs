@@ -20,6 +20,10 @@ namespace ALibrary.Models
         public string Description { get; set; }
         [Range(0, 5)]
         public int TodayBestChoice { get; set; }
+        [Required, Range(0, 5)]
+        public int Rating { get; set; }
+        [Required]
+        public bool ForAuthorize { get; set; }
         [Required]
         public int Author { get; set; }
         [Required]
