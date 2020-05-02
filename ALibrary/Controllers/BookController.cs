@@ -21,7 +21,11 @@ namespace ALibrary.Controllers
                     return HttpNotFound();
                 }
 
+                book.View += 1;
+
                 bookViewModel.Book = book;
+
+                context.SaveChanges();
             }
 
             return View("Book", bookViewModel);
@@ -37,6 +41,10 @@ namespace ALibrary.Controllers
                 {
                     return HttpNotFound();
                 }
+
+                book.View += 1;
+
+                context.SaveChanges();
 
                 return View(book);
             }

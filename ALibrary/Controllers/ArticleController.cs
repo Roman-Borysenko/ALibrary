@@ -39,8 +39,12 @@ namespace ALibrary.Controllers
                     return HttpNotFound();
                 }
 
+                articleViewModel.Article.View += 1;
+
                 var similarArticlesId = articleViewModel.Article.SimilarArticles.Select(s => s.SimilarArticleId);
                 articleViewModel.SimilarArticles = context.Articles.Include("ArticleImages").Include("SimilarArticles").Where(a => similarArticlesId.Any(s => s == a.Id)).OrderByDescending(a => a.Create).Take(3).ToList();
+
+                context.SaveChanges();
             }
 
             ViewBag.Article = true;
