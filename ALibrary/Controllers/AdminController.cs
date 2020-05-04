@@ -461,7 +461,10 @@ namespace ALibrary.Controllers
 
         public ActionResult ShowArticles()
         {
-            return View();
+            using (var context = new DataContext())
+            {
+                return View(context.Articles.ToList());
+            }
         }
         public ActionResult AddArticle()
         {
@@ -516,6 +519,95 @@ namespace ALibrary.Controllers
             }
 
             return Redirect("/admin/articles");
+        }
+
+        public ActionResult UpdateArticle(int id)
+        {
+            GetArticlesAndTags();
+
+            using (var context = new DataContext())
+            {
+                var article = context.Articles.Include("ArticleImages").Include("ArticleTags").Include("SimilarArticles").FirstOrDefault(a => a.Id == id);
+
+                var articleViewModel = new UpdateArticleViewModel
+                {
+                    Id = article.Id,
+                    Title = article.Title,
+                    Create = article.Create,
+                    Description = article.Description,
+                    Text = article.Text,
+                    ArticleImages = article.ArticleImages,
+                    SimilarArticles = article.SimilarArticles.Select(s => s.SimilarArticleId).ToArray(),
+                    ArticleTags = article.ArticleTags.Select(t => t.Id).ToArray()
+                };
+
+                return View(articleViewModel);
+            }
+        }
+        [HttpPost]
+        public ActionResult UpdateArticle(UpdateArticleViewModel article)
+        {
+            if (!ModelState.IsValid)
+            {
+                GetArticlesAndTags();
+                return View(article);
+            }
+
+            var articleImages = new List<ArticleImages>();
+            foreach (var image in article.Images)
+            {
+                if (image != null)
+                {
+                    string imagePath = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(image.FileName);
+                    articleImages.Add(new ArticleImages { ImagePath = imagePath });
+                    WebImage img = new WebImage(image.InputStream);
+                    img.Resize(1600, 600);
+                    img.Save(Server.MapPath("~/Content/images/articles/" + imagePath));
+                }
+            }
+
+            using (var context = new DataContext())
+            {
+                var articleUpdate = context.Articles.Include("ArticleImages").Include("ArticleTags").Include("SimilarArticles").FirstOrDefault(a => a.Id == article.Id);
+
+                articleUpdate.Title = article.Title;
+                articleUpdate.Slug = article.Title.GenerateSlug();
+                articleUpdate.Description = article.Description;
+                articleUpdate.Text = article.Text;
+                //if(articleImages != null && articleImages.Count > 0)
+                    articleUpdate.ArticleImages.AddRange(articleImages);
+                articleUpdate.ArticleTags = context.ArticleTags.Where(t => article.ArticleTags.Contains(t.Id)).ToList();
+
+                if (article.SimilarArticles != null && article.SimilarArticles.Count() > 0)
+                {
+                    context.SimilarArticles.RemoveRange(articleUpdate.SimilarArticles);
+
+                    foreach (var similar in article.SimilarArticles)
+                    {
+                        context.SimilarArticles.Add(new SimilarArticle { Article = articleUpdate, SimilarArticleId = similar });
+                    }
+                }
+
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/articles");
+        }
+
+        public ActionResult DeleteArticleImage(int image)
+        {
+            using (var context = new DataContext())
+            {
+                context.ArticleImages.Remove(context.ArticleImages.FirstOrDefault(i => i.Id == image));
+                context.SaveChanges();
+            }
+
+            return Redirect(Request.UrlReferrer.AbsoluteUri);
+        }
+
+        public void DeleteArticle(int id)
+        {
+            Response.Write(id);
         }
 
         #endregion

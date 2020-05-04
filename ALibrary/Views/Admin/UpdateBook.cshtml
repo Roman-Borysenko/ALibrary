@@ -75,9 +75,9 @@
             </div>
 
             <div class="form-group">
-                <img src="@Url.Content("~/Content/images/book/" + Model.ImageName)" class="img-thumbnail" id="image">
-                @Html.LabelFor(b => b.BookCover, "Обложка книги")
-                @Html.TextBoxFor(b => b.BookCover, new { @type = "file", @class = "form-control", @id = "file" })
+                <img src="@Url.Content("~/Content/images/book/" + Model.ImageName)" class="img-thumbnail multi-image">
+                @Html.LabelFor(b => b.BookCover, "Изображение")
+                @Html.TextBoxFor(b => b.BookCover, new { @type = "file", @class = "form-control multi" })
                 @Html.ValidationMessageFor(b => b.BookCover, "", new { @class = "text-danger" })
             </div>
         </div>

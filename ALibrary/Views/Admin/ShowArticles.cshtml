@@ -1,6 +1,26 @@
-﻿@{
+﻿@model List<ALibrary.Models.Article>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Статьи</h2>
 @Html.ActionLink("Add new article", "AddArticle", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Title", "Title"),
+    grid.Column(header: "Show a article", format: @<a target="_blank" href="@Url.RouteUrl("Article", new { slug = item.Slug })">Show</a>),
+grid.Column(header: "Edit article", format: @<a href="@Url.Action("UpdateArticle", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete article", format: @<a href="@Url.Action("DeleteArticle", "Admin", new { id = item.Id })">Delete</a>)
+))

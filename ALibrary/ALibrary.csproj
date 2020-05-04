@@ -258,6 +258,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SimilarArticle.cs" />
     <Compile Include="Models\Slide.cs" />
+    <Compile Include="Models\UpdateArticleViewModel.cs" />
     <Compile Include="Models\UpdateBook.cs" />
     <Compile Include="Models\Watchlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -721,6 +722,7 @@
     <Content Include="Scripts\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Admin\UpdateArticle.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

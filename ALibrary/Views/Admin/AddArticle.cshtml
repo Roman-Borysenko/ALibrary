@@ -43,10 +43,11 @@
             </div>
         </div>
 
-        <div class="col-6 col-md-4">
-            <div class="form-group images">
+        <div class="col-6 col-md-4 multi-images">
+            <div class="form-group multi-group">
+                <img src="" class="img-thumbnail multi-image">
                 @Html.LabelFor(b => b.Images, "Изображение")
-                @Html.TextBoxFor(b => b.Images, new { @type = "file", @class = "form-control", @id = "file", @style="margin-bottom: 10px;" })
+                @Html.TextBoxFor(b => b.Images, new { @type = "file", @class = "form-control multi" })
                 @Html.ValidationMessageFor(b => b.Images, "", new { @class = "text-danger" })
             </div>
         </div>

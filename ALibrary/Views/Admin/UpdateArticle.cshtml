@@ -1,0 +1,106 @@
+﻿@model ALibrary.Models.UpdateArticleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактировать статью</h2>
+@using (Html.BeginForm("UpdateArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12 col-md-8">
+            @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+            <div class="form-group">
+                @Html.LabelFor(b => b.Title, "Название статьи")
+                @Html.TextBoxFor(b => b.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Title, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Description, "Краткое содержание статьи")
+                @Html.TextBoxFor(b => b.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Text, "Текст статьи")
+                @Html.TextAreaFor(b => b.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Text, "", new { @class = "text-danger" })
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(b => b.SimilarArticles, "Похожие статьи")
+                @Html.DropDownListFor(b => b.SimilarArticles, ViewBag.Articles as SelectList, new { @class = "form-control chosen-select", @multiple = "true" })
+                @Html.ValidationMessageFor(b => b.SimilarArticles, "", new { @class = "text-danger" })
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.SimilarArticles, "Похожие статьи")
+                <select name="SimilarArticles" class="form-control chosen-select" , multiple>
+                    @foreach (var item in ViewBag.Articles as SelectList)
+                    {
+                        if (int.Parse(item.Value) != Model.Id)
+                        {
+                            if (Model.SimilarArticles.Contains(int.Parse(item.Value)))
+                            {
+                                <option value="@item.Value" selected>@item.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        }
+                    }
+                </select>
+                @Html.ValidationMessageFor(b => b.SimilarArticles, "", new { @class = "text-danger" })
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(b => b.ArticleTags, "Теги")
+                @Html.DropDownListFor(b => b.ArticleTags, ViewBag.Tags as SelectList, new { @class = "form-control chosen-select", @multiple = "true" })
+                @Html.ValidationMessageFor(b => b.ArticleTags, "", new { @class = "text-danger" })
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.ArticleTags, "Теги")
+                <select name="ArticleTags" class="form-control chosen-select", multiple>
+                    @foreach (var item in ViewBag.Tags as SelectList)
+                    {
+                        if (Model.ArticleTags.Contains(int.Parse(item.Value)))
+                        {
+                            <option value="@item.Value" selected>@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+                @Html.ValidationMessageFor(b => b.ArticleTags, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4 multi-images">
+
+            @foreach (var image in Model.ArticleImages)
+            {
+                <div class="form-group multi-group">
+                    <img src="@Url.Content("~/Content/images/articles/" + image.ImagePath)" class="img-thumbnail multi-image">
+                    <a class="delete-image btn btn-danger" style="display: block; margin-top: 5px;" data-href="@Url.Action("DeleteArticleImage", "Admin", new { image = image.Id })">Delete</a>
+                </div>
+            }
+
+            <div class="form-group multi-group">
+                <img src="" class="img-thumbnail multi-image">
+                @Html.LabelFor(b => b.Images, "Изображение")
+                @Html.TextBoxFor(b => b.Images, new { @type = "file", @class = "form-control multi" })
+                @Html.ValidationMessageFor(b => b.Images, "", new { @class = "text-danger" })
+                <a class="delete-image btn btn-danger" style="display: block; margin-top: 5px;" data-href="">Delete</a>
+            </div>
+
+        </div>
+    </div>
+}

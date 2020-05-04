@@ -155,6 +155,24 @@ namespace ALibrary
                 defaults: new { controller = "Admin", action = "AddArticle" }
             );
 
+            routes.MapRoute(
+                name: "UpdateArticle",
+                url: "admin/article/edit/{id}",
+                defaults: new { controller = "Admin", action = "UpdateArticle" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteArticle",
+                url: "admin/article/delete/{id}",
+                defaults: new { controller = "Admin", action = "DeleteArticle" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteArticleImage",
+                url: "admin/article/image/delete/{image}",
+                defaults: new { controller = "Admin", action = "DeleteArticleImage" }
+            );
+
             #endregion
 
             #endregion
