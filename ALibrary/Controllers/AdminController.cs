@@ -617,5 +617,30 @@ namespace ALibrary.Controllers
         }
 
         #endregion
+
+        #region Tags
+
+        public ActionResult ShowTags()
+        {
+            using (var context = new DataContext())
+            {
+                return View(context.ArticleTags.ToList());
+            }
+        }
+
+        public void AddTag()
+        {
+            Response.Write("Add");
+        }
+        public void EditTag(string slug)
+        {
+            Response.Write("Edit: " + slug);
+        }
+        public void DeleteTag(string slug)
+        {
+            Response.Write("Delete: " + slug);
+        }
+
+        #endregion
     }
 }

@@ -175,6 +175,34 @@ namespace ALibrary
 
             #endregion
 
+            #region Tags
+
+            routes.MapRoute(
+                name: "ShowTags",
+                url: "admin/tags",
+                defaults: new { controller = "Admin", action = "ShowTags" }
+            );
+
+            routes.MapRoute(
+                name: "AddTag",
+                url: "admin/tag/add",
+                defaults: new { controller = "Admin", action = "AddTag" }
+            );
+
+            routes.MapRoute(
+                name: "EditTag",
+                url: "admin/tag/edit/{slug}",
+                defaults: new { controller = "Admin", action = "EditTag" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteTag",
+                url: "admin/tag/delete/{slug}",
+                defaults: new { controller = "Admin", action = "DeleteTag" }
+            );
+
+            #endregion
+
             #endregion
 
             #region Routes Site

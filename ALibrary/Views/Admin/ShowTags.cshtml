@@ -1,0 +1,25 @@
+﻿@model List<ALibrary.Models.ArticleTag>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Теги</h2>
+@Html.ActionLink("Add new tag", "AddTag", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Name", "Name"),
+grid.Column(header: "Edit article", format: @<a href="@Url.Action("EditTag", "Admin", new { slug = item.Slug })">Edit</a>),
+grid.Column(header: "Delete article", format: @<a href="@Url.Action("DeleteTag", "Admin", new { slug = item.Slug })">Delete</a>)
+))
