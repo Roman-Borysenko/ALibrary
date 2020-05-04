@@ -605,9 +605,15 @@ namespace ALibrary.Controllers
             return Redirect(Request.UrlReferrer.AbsoluteUri);
         }
 
-        public void DeleteArticle(int id)
+        public ActionResult DeleteArticle(int id)
         {
-            Response.Write(id);
+            using (var context = new DataContext())
+            {
+                context.Articles.Remove(context.Articles.Include("ArticleImages").Include("ArticleTags").Include("SimilarArticles").FirstOrDefault(a => a.Id == id));
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/articles");
         }
 
         #endregion
