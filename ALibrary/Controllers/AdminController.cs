@@ -628,17 +628,52 @@ namespace ALibrary.Controllers
             }
         }
 
-        public void AddTag()
+        public ActionResult AddTag()
         {
-            Response.Write("Add");
+            return View("Tag");
         }
-        public void EditTag(string slug)
+        [HttpPost]
+        public ActionResult AddTag(ArticleTag tag)
         {
-            Response.Write("Edit: " + slug);
+            using (var context = new DataContext())
+            {
+                tag.Slug = tag.Name.GenerateSlug();
+                context.ArticleTags.Add(tag);
+                context.SaveChanges();
+            }
+            return Redirect("/admin/tags");
         }
-        public void DeleteTag(string slug)
+        public ActionResult EditTag(string slug)
         {
-            Response.Write("Delete: " + slug);
+            ViewBag.IsEditPage = true;
+            using (var context = new DataContext())
+            {
+                return View("Tag", context.ArticleTags.FirstOrDefault(t => t.Slug == slug));
+            }
+        }
+        [HttpPost]
+        public ActionResult EditTag(ArticleTag tag)
+        {
+            using (var context = new DataContext())
+            {
+                var tagUpdate = context.ArticleTags.FirstOrDefault(t => t.Id == tag.Id);
+                tagUpdate.Name = tag.Name;
+                tagUpdate.Slug = tag.Name.GenerateSlug();
+
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/tags");
+        }
+        public ActionResult DeleteTag(string slug)
+        {
+            using (var context = new DataContext())
+            {
+                context.ArticleTags.Remove(context.ArticleTags.FirstOrDefault(t => t.Slug == slug));
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/tags");
         }
 
         #endregion
