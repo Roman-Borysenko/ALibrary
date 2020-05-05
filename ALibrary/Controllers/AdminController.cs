@@ -776,9 +776,15 @@ namespace ALibrary.Controllers
 
             return Redirect("/admin/slides");
         }
-        public void DeleteSlide(int id)
+        public ActionResult DeleteSlide(int id)
         {
-            Response.Write("Delete: " + id);
+            using (var context = new DataContext())
+            {
+                context.Slider.Remove(context.Slider.FirstOrDefault(s => s.Id == id));
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/slides");
         }
 
         #endregion
