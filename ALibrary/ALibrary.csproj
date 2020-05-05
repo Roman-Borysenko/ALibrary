@@ -262,6 +262,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SimilarArticle.cs" />
     <Compile Include="Models\Slide.cs" />
+    <Compile Include="Models\SlideAdminViewModel.cs" />
     <Compile Include="Models\UpdateArticleViewModel.cs" />
     <Compile Include="Models\UpdateBook.cs" />
     <Compile Include="Models\Watchlist.cs" />
@@ -730,6 +731,7 @@
     <Content Include="Views\Admin\ShowTags.cshtml" />
     <Content Include="Views\Admin\Tag.cshtml" />
     <Content Include="Views\Admin\ShowSlides.cshtml" />
+    <Content Include="Views\Admin\Slide.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

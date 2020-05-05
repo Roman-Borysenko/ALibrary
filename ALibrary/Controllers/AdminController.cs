@@ -687,9 +687,42 @@ namespace ALibrary.Controllers
                 return View(context.Slider.ToList());
             }
         }
-        public void AddSlide()
+        public ActionResult AddSlide()
         {
-            Response.Write("Add");
+            return View("Slide");
+        }
+        [HttpPost]
+        public ActionResult AddSlide(SlideAdminViewModel slide)
+        {
+            if (!ModelState.IsValid)
+            {
+                GetAuthorAndCategories();
+                return View("Slide", slide);
+            }
+
+            using (var context = new DataContext())
+            {
+                string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(slide.Image.FileName);
+                WebImage img = new WebImage(slide.Image.InputStream);
+                img.Resize(1920, 616);
+                img.Save(Server.MapPath("~/Content/images/banners/" + image));
+
+                var slideSave = new Slide
+                {
+                    Title = slide.Title,
+                    Signature = slide.Signature,
+                    Description = slide.Description,
+                    LinkText = slide.LinkText,
+                    Link = slide.Link,
+                    Image = image,
+                    Create = DateTime.Now
+                };
+
+                context.Slider.Add(slideSave);
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/slides");
         }
         public void EditSlide(int id)
         {
