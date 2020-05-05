@@ -1,0 +1,26 @@
+﻿@model List<ALibrary.Models.Banner>
+@using ALibrary.Helpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Баннеры</h2>
+@Html.ActionLink("Add new banner", "AddBanner", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Text", "Text"),
+grid.Column(header: "Edit banner", format: @<a href="@Url.Action("EditBanner", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete banner", format: @<a href="@Url.Action("DeleteBanner", "Admin", new { id = item.Id })">Delete</a>)
+))

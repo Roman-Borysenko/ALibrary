@@ -250,6 +250,7 @@
     <Compile Include="Models\AsideViewModel.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Banner.cs" />
+    <Compile Include="Models\BannerViewModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\Category.cs" />
@@ -732,6 +733,7 @@
     <Content Include="Views\Admin\Tag.cshtml" />
     <Content Include="Views\Admin\ShowSlides.cshtml" />
     <Content Include="Views\Admin\Slide.cshtml" />
+    <Content Include="Views\Admin\ShowBanners.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

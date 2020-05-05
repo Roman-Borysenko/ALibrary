@@ -231,6 +231,34 @@ namespace ALibrary
 
             #endregion
 
+            #region Banner
+
+            routes.MapRoute(
+                name: "ShowBanners",
+                url: "admin/banners",
+                defaults: new { controller = "Admin", action = "ShowBanners" }
+            );
+
+            routes.MapRoute(
+                name: "AddBanner",
+                url: "admin/banner/add",
+                defaults: new { controller = "Admin", action = "AddBanner" }
+            );
+
+            routes.MapRoute(
+                name: "EditBanner",
+                url: "admin/banner/edit/{id}",
+                defaults: new { controller = "Admin", action = "EditBanner" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteBanner",
+                url: "admin/banner/delete/{id}",
+                defaults: new { controller = "Admin", action = "DeleteBanner" }
+            );
+
+            #endregion
+
             #endregion
 
             #region Routes Site

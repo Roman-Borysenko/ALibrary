@@ -788,5 +788,28 @@ namespace ALibrary.Controllers
         }
 
         #endregion
+
+        # region Banner
+
+        public ActionResult ShowBanners()
+        {
+            using (var context = new DataContext())
+            {
+                return View(context.Advertising.ToList());
+            }
+        }
+        public void AddBanner()
+        {
+            Response.Write("Add");
+        }
+        public void EditBanner(int id)
+        {
+            Response.Write("Edit: " + id);
+        }
+        public void DeleteBanner(int id)
+        {
+            Response.Write("Delete: " + id);
+        }
+        #endregion
     }
 }
