@@ -12,14 +12,14 @@ namespace ALibrary.Models
         public string Title { get; set; }
         [Required, StringLength(120, MinimumLength = 12)]
         public string Signature { get; set; }
-        [Required, StringLength(500, MinimumLength = 3), AllowHtml]
+        [Required, MinLength(3), AllowHtml]
         public string Description { get; set; }
         [Required, StringLength(120, MinimumLength = 12)]
         public string LinkText { get; set; }
         [Required, StringLength(120, MinimumLength = 12)]
         public string Link { get; set; }
         public string ImagePath { get; set; }
-        [Required, FileFormat(".jpg|.jpeg|.png")]
+        [FileFormat(".jpg|.jpeg|.png")]
         public HttpPostedFileBase Image { get; set; }
     }
 }

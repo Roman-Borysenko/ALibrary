@@ -1,13 +1,33 @@
 ﻿@model ALibrary.Models.SlideAdminViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string method = "AddSlide";
+    if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+    {
+        method = "EditSlide";
+    }
 }
 
-@using (Html.BeginForm("AddSlide", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+{
+    <h2>Редактировать слайд</h2>
+}
+else
+{
+    <h2>Добавить слайд</h2>
+}
+
+@using (Html.BeginForm(method, "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
 
         <div class="col-12 col-md-8">
+            @if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+            {
+                @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+            }
+
             <div class="form-group">
                 @Html.LabelFor(b => b.Title, "Заголовок слайда")
                 @Html.TextBoxFor(b => b.Title, new { @class = "form-control" })
@@ -45,7 +65,14 @@
 
         <div class="col-6 col-md-4">
             <div class="form-group">
-                <img class="img-thumbnail multi-image">
+                @if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+                {
+                    <img src="@Url.Content("~/Content/images/banners/" + Model.ImagePath)" class="img-thumbnail multi-image">
+                }
+                else
+                {
+                    <img class="img-thumbnail multi-image">
+                }
                 @Html.LabelFor(b => b.Image, "Изображение")
                 @Html.TextBoxFor(b => b.Image, new { @type = "file", @class = "form-control multi" })
                 @Html.ValidationMessageFor(b => b.Image, "", new { @class = "text-danger" })

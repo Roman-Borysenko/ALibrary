@@ -10060,3 +10060,8 @@ a.login:hover {
     font-size: 12px;
     padding-right: 16px;
 }
+
+.description-slide * {
+    padding: 0 !important;
+    margin: 0 !important;
+}

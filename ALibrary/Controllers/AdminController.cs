@@ -724,9 +724,57 @@ namespace ALibrary.Controllers
 
             return Redirect("/admin/slides");
         }
-        public void EditSlide(int id)
+        public ActionResult EditSlide(int id)
         {
-            Response.Write("Edit: " + id);
+            using (var context = new DataContext())
+            {
+                var slide = context.Slider.FirstOrDefault(s => s.Id == id);
+                var slideEdit = new SlideAdminViewModel
+                {
+                    Id = slide.Id,
+                    Title = slide.Title,
+                    Signature = slide.Signature,
+                    Description = slide.Description,
+                    LinkText = slide.LinkText,
+                    Link = slide.Link,
+                    ImagePath = slide.Image
+                };
+
+                ViewBag.IsEditPage = true;
+                return View("Slide", slideEdit);
+            }
+        }
+        [HttpPost]
+        public ActionResult EditSlide(SlideAdminViewModel slide)
+        {
+            if (!ModelState.IsValid)
+            {
+                GetAuthorAndCategories();
+                return View("Slide", slide);
+            }
+
+            using (var context = new DataContext())
+            {
+                var editSlide = context.Slider.FirstOrDefault(s => s.Id == slide.Id);
+                editSlide.Title = slide.Title;
+                editSlide.Signature = slide.Signature;
+                editSlide.Description = slide.Description;
+                editSlide.LinkText = slide.LinkText;
+                editSlide.Link = slide.Link;
+
+                if (slide.Image != null)
+                {
+                    string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(slide.Image.FileName);
+                    WebImage img = new WebImage(slide.Image.InputStream);
+                    img.Resize(1920, 616);
+                    img.Save(Server.MapPath("~/Content/images/banners/" + image));
+                    editSlide.Image = image;
+                }
+
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/slides");
         }
         public void DeleteSlide(int id)
         {
