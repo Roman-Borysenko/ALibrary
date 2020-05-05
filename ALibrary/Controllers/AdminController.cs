@@ -677,5 +677,29 @@ namespace ALibrary.Controllers
         }
 
         #endregion
+
+        #region Slider
+
+        public ActionResult ShowSlides()
+        {
+            using (var context = new DataContext())
+            {
+                return View(context.Slider.ToList());
+            }
+        }
+        public void AddSlide()
+        {
+            Response.Write("Add");
+        }
+        public void EditSlide(int id)
+        {
+            Response.Write("Edit: " + id);
+        }
+        public void DeleteSlide(int id)
+        {
+            Response.Write("Delete: " + id);
+        }
+
+        #endregion
     }
 }

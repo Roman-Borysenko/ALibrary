@@ -203,6 +203,34 @@ namespace ALibrary
 
             #endregion
 
+            #region Slider
+
+            routes.MapRoute(
+                name: "ShowSlides",
+                url: "admin/slides",
+                defaults: new { controller = "Admin", action = "ShowSlides" }
+            );
+
+            routes.MapRoute(
+                name: "AddSlide",
+                url: "admin/slide/add",
+                defaults: new { controller = "Admin", action = "AddSlide" }
+            );
+
+            routes.MapRoute(
+                name: "EditSlide",
+                url: "admin/slide/edit/{id}",
+                defaults: new { controller = "Admin", action = "EditSlide" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteSlide",
+                url: "admin/slide/delete/{id}",
+                defaults: new { controller = "Admin", action = "DeleteSlide" }
+            );
+
+            #endregion
+
             #endregion
 
             #region Routes Site

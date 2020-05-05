@@ -1,0 +1,26 @@
+﻿@model List<ALibrary.Models.Slide>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Слайды</h2>
+@Html.ActionLink("Add new slide", "AddSlide", "Admin")
+
+@{
+    WebGrid grid = new WebGrid(null, rowsPerPage: 10);
+    grid.Bind(Model, autoSortAndPage: true, rowCount: 10);
+}
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+    columns: grid.Columns(
+    grid.Column("Id", " Id"),
+    grid.Column("Title", "Title"),
+    grid.Column("Signature", "Signature"),
+grid.Column(header: "Edit slide", format: @<a href="@Url.Action("EditSlide", "Admin", new { id = item.Id })">Edit</a>),
+grid.Column(header: "Delete slide", format: @<a href="@Url.Action("DeleteSlide", "Admin", new { id = item.Id })">Delete</a>)
+))
