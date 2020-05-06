@@ -813,7 +813,14 @@ namespace ALibrary.Controllers
             {
                 string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(banner.Image.FileName);
                 WebImage img = new WebImage(banner.Image.InputStream);
-                img.Resize(500, 500);
+                if (banner.Place == true)
+                {
+                    img.Resize(500, 500);
+                }
+                else
+                {
+                    img.Resize(1600, 90);
+                }
                 img.Save(Server.MapPath("~/Content/images/banners/" + image));
 
                 var bannerSave = new Banner
@@ -865,7 +872,13 @@ namespace ALibrary.Controllers
                 {
                     string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(banner.Image.FileName);
                     WebImage img = new WebImage(banner.Image.InputStream);
-                    img.Resize(500, 500);
+                    if(banner.Place == true)
+                    {
+                        img.Resize(500, 500);
+                    } else
+                    {
+                        img.Resize(1600, 90);
+                    }
                     img.Save(Server.MapPath("~/Content/images/banners/" + image));
                     editBanner.Image = image;
                 }
@@ -875,9 +888,15 @@ namespace ALibrary.Controllers
 
             return Redirect("/admin/banners");
         }
-        public void DeleteBanner(int id)
+        public ActionResult DeleteBanner(int id)
         {
-            Response.Write("Delete: " + id);
+            using (var context = new DataContext())
+            {
+                context.Advertising.Remove(context.Advertising.FirstOrDefault(b => b.Id == id));
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/banners");
         }
         #endregion
     }
