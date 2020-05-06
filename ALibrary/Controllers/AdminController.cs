@@ -550,6 +550,10 @@ namespace ALibrary.Controllers
             if (!ModelState.IsValid)
             {
                 GetArticlesAndTags();
+                using (var context = new DataContext())
+                {
+                    article.ArticleImages = context.Articles.Include("ArticleImages").FirstOrDefault(a => a.Id == article.Id).ArticleImages;
+                }
                 return View(article);
             }
 

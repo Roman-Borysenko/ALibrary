@@ -75,6 +75,7 @@
             </div>
 
             <div class="form-group">
+                @Html.TextBoxFor(b => b.ImageName, new { @type = "hidden" })
                 <img src="@Url.Content("~/Content/images/book/" + Model.ImageName)" class="img-thumbnail multi-image">
                 @Html.LabelFor(b => b.BookCover, "Изображение")
                 @Html.TextBoxFor(b => b.BookCover, new { @type = "file", @class = "form-control multi" })

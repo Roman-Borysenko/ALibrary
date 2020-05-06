@@ -68,6 +68,7 @@ else
                 @if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
                 {
                     <img src="@Url.Content("~/Content/images/banners/" + Model.ImagePath)" class="img-thumbnail multi-image">
+                    @Html.TextBoxFor(b => b.ImagePath, new { @type = "hidden" })
                 }
                 else
                 {
