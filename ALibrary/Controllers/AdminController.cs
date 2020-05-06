@@ -696,7 +696,6 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthorAndCategories();
                 return View("Slide", slide);
             }
 
@@ -749,7 +748,7 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthorAndCategories();
+                ViewBag.IsEditPage = true;
                 return View("Slide", slide);
             }
 
@@ -807,8 +806,7 @@ namespace ALibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                GetAuthorAndCategories();
-                return View("Slide", banner);
+                return View("Banner", banner);
             }
 
             using (var context = new DataContext())
@@ -832,9 +830,50 @@ namespace ALibrary.Controllers
 
             return Redirect("/admin/banners");
         }
-        public void EditBanner(int id)
+        public ActionResult EditBanner(int id)
         {
-            Response.Write("Edit: " + id);
+            using (var context = new DataContext())
+            {
+                var banner = context.Advertising.FirstOrDefault(b => b.Id == id);
+                var editBanner = new BannerViewModel 
+                { 
+                    Text = banner.Text,
+                    ImagePath = banner.Image,
+                    Place = banner.Place
+                };
+
+                ViewBag.IsEditPage = true;
+                return View("Banner", editBanner);
+            }
+        }
+        [HttpPost]
+        public ActionResult EditBanner(BannerViewModel banner)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.IsEditPage = true;
+                return View("Banner", banner);
+            }
+
+            using (var context = new DataContext())
+            {
+                var editBanner = context.Advertising.FirstOrDefault(b => b.Id == banner.Id);
+                editBanner.Text = banner.Text;
+                editBanner.Place = banner.Place;
+
+                if(banner.Image != null)
+                {
+                    string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(banner.Image.FileName);
+                    WebImage img = new WebImage(banner.Image.InputStream);
+                    img.Resize(500, 500);
+                    img.Save(Server.MapPath("~/Content/images/banners/" + image));
+                    editBanner.Image = image;
+                }
+
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/banners");
         }
         public void DeleteBanner(int id)
         {

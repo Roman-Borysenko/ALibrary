@@ -15,7 +15,7 @@ namespace ALibrary.Models
         public string ImagePath { get; set; }
         [Required]
         public bool Place { get; set; }
-        [Required, FileFormat(".jpg|.jpeg|.png")]
+        [FileFormat(".jpg|.jpeg|.png")]
         public HttpPostedFileBase Image { get; set; }
     }
 }
