@@ -734,6 +734,7 @@
     <Content Include="Views\Admin\ShowSlides.cshtml" />
     <Content Include="Views\Admin\Slide.cshtml" />
     <Content Include="Views\Admin\ShowBanners.cshtml" />
+    <Content Include="Views\Admin\Banner.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

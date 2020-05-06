@@ -798,9 +798,39 @@ namespace ALibrary.Controllers
                 return View(context.Advertising.ToList());
             }
         }
-        public void AddBanner()
+        public ActionResult AddBanner()
         {
-            Response.Write("Add");
+            return View("Banner");
+        }
+        [HttpPost]
+        public ActionResult AddBanner(BannerViewModel banner)
+        {
+            if (!ModelState.IsValid)
+            {
+                GetAuthorAndCategories();
+                return View("Slide", banner);
+            }
+
+            using (var context = new DataContext())
+            {
+                string image = Guid.NewGuid().ToString().Substring(0, 10) + "_" + System.IO.Path.GetFileName(banner.Image.FileName);
+                WebImage img = new WebImage(banner.Image.InputStream);
+                img.Resize(500, 500);
+                img.Save(Server.MapPath("~/Content/images/banners/" + image));
+
+                var bannerSave = new Banner
+                {
+                    Text = banner.Text,
+                    Place = banner.Place,
+                    Create = DateTime.Now,
+                    Image = image
+                };
+
+                context.Advertising.Add(bannerSave);
+                context.SaveChanges();
+            }
+
+            return Redirect("/admin/banners");
         }
         public void EditBanner(int id)
         {

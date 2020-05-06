@@ -1,0 +1,64 @@
+﻿@model ALibrary.Models.BannerViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string method = "AddBanner";
+    if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+    {
+        method = "EditBanner";
+    }
+}
+
+@if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+{
+    <h2>Редактировать баннер</h2>
+}
+else
+{
+    <h2>Добавить баннер</h2>
+}
+
+@using (Html.BeginForm(method, "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-12 col-md-8">
+            @if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+            {
+                @Html.TextBoxFor(b => b.Id, new { @type = "hidden" })
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Text, "Текст")
+                @Html.TextBoxFor(b => b.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.Text, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(b => b.Place, "True - баннер в сайтбаре, False - баннер в верху сайта")
+                @Html.CheckBoxFor(b => b.Place)
+                @Html.ValidationMessageFor(b => b.Place, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <div class="form-group">
+                @if (ViewBag.IsEditPage != null && ViewBag.IsEditPage == true)
+                {
+                    <img src="@Url.Content("~/Content/images/banners/" + Model.ImagePath)" class="img-thumbnail multi-image">
+                }
+                else
+                {
+                    <img class="img-thumbnail multi-image">
+                }
+                @Html.LabelFor(b => b.Image, "Изображение")
+                @Html.TextBoxFor(b => b.Image, new { @type = "file", @class = "form-control multi" })
+                @Html.ValidationMessageFor(b => b.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
