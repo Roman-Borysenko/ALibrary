@@ -405,8 +405,8 @@
     <Content Include="Content\fonts\MuseoSans_500-webfont.eot" />
     <Content Include="Content\fonts\MuseoSans_500-webfont.ttf" />
     <Content Include="Content\fonts\MuseoSans_500-webfont.woff" />
-    <None Include="Properties\PublishProfiles\ALibrary-books - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />

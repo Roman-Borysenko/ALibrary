@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ALibrary.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin

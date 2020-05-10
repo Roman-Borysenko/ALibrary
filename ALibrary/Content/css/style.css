@@ -5194,6 +5194,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
 }
 .movie .movie__images img {
   max-width: 100%;
+  height: 312px;
 }
 .movie .movie__title {
   display: inline-block;
